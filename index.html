@@ -908,7 +908,6 @@
             <div class="float-ornament">◈ ◈ ◈</div>
             <div class="btn-group" style="margin-top:32px;">
                 <button class="btn btn-primary" id="echoBtn">◈ 聆听余响</button>
-                <!-- 优化点：新增「随机漫游」与「重置」按钮，补全原有功能 -->
                 <button class="btn btn-secondary" id="randomBtn">✦ 随机漫游</button>
                 <button class="btn btn-secondary" id="resetBtn">⟳ 重置</button>
             </div>
@@ -924,7 +923,7 @@
                 <li><a href="#resonance">共鸣</a></li>
                 <li><a href="#spectral">光谱</a></li>
                 <li><a href="#archives">档案</a></li>
-                <li><a href="#echo">关于</a></li>
+                <li><a href="about.html">关于</a></li>
             </ul>
             <p class="note">星尘经纬 · 无尽回廊 · 虚数之诗</p>
         </div>
@@ -1262,7 +1261,7 @@
                 showToast(msgs[Math.floor(Math.random() * msgs.length)]);
             });
 
-            // 6.3 随机漫游（优化点：补全原有功能）
+            // 6.3 随机漫游
             document.getElementById('randomBtn').addEventListener('click', function() {
                 const sections = ['origin', 'folds', 'resonance', 'spectral', 'archives', 'narratives', 'grammar',
                     'topology', 'loom', 'echo'
@@ -1281,7 +1280,7 @@
                 }
             });
 
-            // 6.4 重置（优化点：补全原有功能）
+            // 6.4 重置
             document.getElementById('resetBtn').addEventListener('click', function() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 const msgs = [
@@ -1295,35 +1294,51 @@
             // ============================================================
             // 7. 导航链接（优化：事件委托 + 防抖）
             // ============================================================
-            document.querySelectorAll('.nav-links a, .footer .links a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-                    if (href && href.startsWith('#')) {
-                        const targetId = href.substring(1);
-                        const target = document.getElementById(targetId);
-                        if (target) {
-                            // 延迟显示 toast 以配合滚动
-                            setTimeout(() => {
-                                const msgs = [
-                                    `↗ 导航 · 进入 ${targetId}`,
-                                    `✦ 折叠 · 抵达 ${targetId}`,
-                                    `∞ 回响 · ${targetId} 的深处`
-                                ];
-                                showToast(msgs[Math.floor(Math.random() * msgs.length)]);
-                            }, 200);
-                        }
-                        return;
-                    }
-                    // 外部链接或 about 占位
-                    if (href && (href.includes('about') || href.includes('.html'))) {
-                        e.preventDefault();
-                        showToast(`↗ 导航至 ${this.textContent.trim()}`, 1200);
-                        return;
-                    }
-                    e.preventDefault();
-                    showToast(`↗ 导航 · ${this.textContent.trim()}`);
-                });
+            // 对 .nav-links 和 .footer .links 使用事件委托
+            document.querySelector('.nav-links')?.addEventListener('click', function(e) {
+                const link = e.target.closest('a');
+                if (!link) return;
+                handleNavClick(e, link);
             });
+
+            document.querySelector('.footer .links')?.addEventListener('click', function(e) {
+                const link = e.target.closest('a');
+                if (!link) return;
+                handleNavClick(e, link);
+            });
+
+            function handleNavClick(e, link) {
+                const href = link.getAttribute('href');
+                // 如果是 about.html 或包含 .html，直接放行，但显示提示
+                if (href && (href.includes('about') || href.includes('.html'))) {
+                    // 不阻止默认行为，让浏览器正常跳转
+                    showToast(`↗ 导航至 ${link.textContent.trim()}`, 1200);
+                    return;
+                }
+                // 锚点链接
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const target = document.getElementById(targetId);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                        setTimeout(() => {
+                            const msgs = [
+                                `↗ 导航 · 进入 ${targetId}`,
+                                `✦ 折叠 · 抵达 ${targetId}`,
+                                `∞ 回响 · ${targetId} 的深处`
+                            ];
+                            showToast(msgs[Math.floor(Math.random() * msgs.length)]);
+                        }, 200);
+                    }
+                    return;
+                }
+                // 其他链接（如 # 或空）
+                e.preventDefault();
+                showToast(`↗ 导航 · ${link.textContent.trim()}`);
+            }
+
+            // 额外处理：页脚和导航中的 "关于" 链接已改为 about.html，上面逻辑会正确处理
 
             // ============================================================
             // 8. 入场动画（优化：使用 IntersectionObserver 批量处理）
