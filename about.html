@@ -43,8 +43,7 @@
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
-            cursor: none;
-            /* 隐藏默认光标，使用自定义光标 */;
+            cursor: none; /* 隐藏默认光标 */
         }
 
         /* 自定义光标层 */
@@ -146,12 +145,8 @@
         }
 
         @keyframes nebulaDrift {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-            100% {
-                transform: translate(5%, 3%) scale(1.1);
-            }
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(5%, 3%) scale(1.1); }
         }
 
         /* ================================================================
@@ -194,9 +189,7 @@
             color: var(--text);
             text-decoration: none;
         }
-        .navbar .logo span {
-            color: var(--gold);
-        }
+        .navbar .logo span { color: var(--gold); }
 
         .nav-links {
             display: flex;
@@ -212,12 +205,8 @@
             font-weight: 300;
             position: relative;
         }
-        .nav-links a:hover {
-            color: #fff;
-        }
-        .nav-links .current {
-            color: var(--gold);
-        }
+        .nav-links a:hover { color: #fff; }
+        .nav-links .current { color: var(--gold); }
         .nav-links .current::after {
             content: '';
             position: absolute;
@@ -259,12 +248,8 @@
         }
 
         @keyframes titlePulse {
-            0% {
-                filter: drop-shadow(0 0 40px rgba(217, 198, 169, 0.04));
-            }
-            100% {
-                filter: drop-shadow(0 0 100px rgba(217, 198, 169, 0.12));
-            }
+            0% { filter: drop-shadow(0 0 40px rgba(217, 198, 169, 0.04)); }
+            100% { filter: drop-shadow(0 0 100px rgba(217, 198, 169, 0.12)); }
         }
 
         .page-header .sub {
@@ -296,15 +281,8 @@
             animation: dotPulse 2s ease-in-out infinite;
         }
         @keyframes dotPulse {
-            0%,
-            100% {
-                opacity: 0.3;
-                transform: scale(0.8);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.2);
-            }
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
 
         /* ================================================================
@@ -353,9 +331,7 @@
             padding: 120px 0;
             border-bottom: 1px solid var(--border);
         }
-        section:last-of-type {
-            border-bottom: none;
-        }
+        section:last-of-type { border-bottom: none; }
 
         /* ================================================================
            7. Grid & 卡片 (带 3D 倾斜)
@@ -366,23 +342,16 @@
             gap: var(--gap) 48px;
             margin-top: 48px;
         }
-        .grid-2 {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        }
-        .grid-3 {
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        }
-        .grid-4 {
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
 
         .card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
             padding: 36px 28px;
-            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
-                border-color 0.4s, box-shadow 0.4s;
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.4s, box-shadow 0.4s;
             cursor: pointer;
             position: relative;
             backdrop-filter: blur(2px);
@@ -393,9 +362,7 @@
         .card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
             opacity: 0;
@@ -405,9 +372,7 @@
             border-color: rgba(217, 198, 169, 0.15);
             box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5), 0 0 40px rgba(217, 198, 169, 0.02);
         }
-        .card:hover::before {
-            opacity: 1;
-        }
+        .card:hover::before { opacity: 1; }
 
         .card .icon {
             font-size: 2.6rem;
@@ -467,9 +432,7 @@
         .timeline-v::before {
             content: '';
             position: absolute;
-            left: 14px;
-            top: 0;
-            bottom: 0;
+            left: 14px; top: 0; bottom: 0;
             width: 2px;
             background: linear-gradient(to bottom, var(--gold), var(--cyan), transparent);
         }
@@ -480,16 +443,12 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        .tl-v-item:hover {
-            transform: translateX(6px);
-        }
+        .tl-v-item:hover { transform: translateX(6px); }
         .tl-v-item::before {
             content: '';
             position: absolute;
-            left: -26px;
-            top: 8px;
-            width: 12px;
-            height: 12px;
+            left: -26px; top: 8px;
+            width: 12px; height: 12px;
             border-radius: 50%;
             background: var(--gold);
             box-shadow: 0 0 30px rgba(217, 198, 169, 0.2);
@@ -551,9 +510,7 @@
             margin-bottom: 12px;
             transition: 0.4s;
         }
-        .icon-card:hover .emoji {
-            transform: scale(1.15) rotate(4deg);
-        }
+        .icon-card:hover .emoji { transform: scale(1.15) rotate(4deg); }
         .icon-card .label {
             font-size: 0.7rem;
             color: var(--muted);
@@ -581,17 +538,13 @@
         .stat-item::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
             opacity: 0;
             transition: opacity 0.4s;
         }
-        .stat-item:hover::after {
-            opacity: 1;
-        }
+        .stat-item:hover::after { opacity: 1; }
         .stat-item:hover {
             transform: scale(1.02);
             border-color: rgba(217, 198, 169, 0.12);
@@ -605,9 +558,7 @@
             letter-spacing: 0.02em;
             transition: 0.4s;
         }
-        .stat-item:hover .number {
-            color: var(--cyan);
-        }
+        .stat-item:hover .number { color: var(--cyan); }
         .stat-item .label {
             font-size: 0.7rem;
             color: var(--muted);
@@ -645,9 +596,7 @@
             position: relative;
             z-index: 2;
         }
-        .panel-grid .data-item:last-child {
-            border-right: none;
-        }
+        .panel-grid .data-item:last-child { border-right: none; }
 
         .panel-grid .data-item .value {
             font-size: 2rem;
@@ -685,10 +634,8 @@
         /* 星座网络 Canvas */
         #constellationCanvas {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             pointer-events: none;
             z-index: 1;
             opacity: 0.5;
@@ -755,9 +702,7 @@
         }
 
         /* 共鸣波纹按钮 */
-        #echoBtn {
-            position: relative;
-        }
+        #echoBtn { position: relative; }
         .ripple-effect {
             position: absolute;
             border-radius: 50%;
@@ -798,9 +743,7 @@
             letter-spacing: 0.1em;
             transition: color 0.3s;
         }
-        .page-footer .links a:hover {
-            color: #fff;
-        }
+        .page-footer .links a:hover { color: #fff; }
         .page-footer .note {
             color: var(--muted);
             font-size: 0.6rem;
@@ -851,28 +794,17 @@
         .reveal {
             opacity: 0;
             transform: translateY(40px);
-            transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1),
-                transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1), transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
         }
         .reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        .reveal-delay-1 {
-            transition-delay: 0.08s;
-        }
-        .reveal-delay-2 {
-            transition-delay: 0.16s;
-        }
-        .reveal-delay-3 {
-            transition-delay: 0.24s;
-        }
-        .reveal-delay-4 {
-            transition-delay: 0.32s;
-        }
-        .reveal-delay-5 {
-            transition-delay: 0.40s;
-        }
+        .reveal-delay-1 { transition-delay: 0.08s; }
+        .reveal-delay-2 { transition-delay: 0.16s; }
+        .reveal-delay-3 { transition-delay: 0.24s; }
+        .reveal-delay-4 { transition-delay: 0.32s; }
+        .reveal-delay-5 { transition-delay: 0.40s; }
 
         /* ================================================================
            15. 加载动画
@@ -909,18 +841,14 @@
             font-weight: 300;
         }
         @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+            to { transform: rotate(360deg); }
         }
 
         /* ================================================================
-           16. 响应式
+           16. 响应式 (补全原截断部分)
            ================================================================ */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 20px;
-            }
+            .container { padding: 0 20px; }
             .navbar {
                 padding: 6px 20px;
                 gap: 20px;
@@ -928,32 +856,17 @@
                 width: calc(100% - 32px);
                 border-radius: 40px;
             }
-            .nav-links {
-                gap: 16px;
-            }
-            .nav-links a {
-                font-size: 0.6rem;
-            }
-            .grid {
-                gap: 32px 24px;
-            }
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-            .timeline-v {
-                padding-left: 24px;
-            }
-            .tl-v-item {
-                padding-left: 16px;
-            }
+            .nav-links { gap: 16px; }
+            .nav-links a { font-size: 0.6rem; }
+            .grid { gap: 32px 24px; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .timeline-v { padding-left: 24px; }
+            .tl-v-item { padding-left: 16px; }
             .tl-v-item::before {
                 left: -22px;
-                width: 10px;
-                height: 10px;
+                width: 100px; height: 10px;
             }
-            section {
-                padding: 80px 0;
-            }
+            section { padding: 80px 0; }
             .icon-grid {
                 grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
                 gap: 20px;
@@ -962,959 +875,458 @@
                 grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
                 gap: 24px;
             }
-            .page-header h1 {
-                font-size: 2.4rem;
-            }
+            .page-header h1 { font-size: 2.4rem; }
             .btn {
                 padding: 12px 28px;
                 font-size: 0.7rem;
             }
-            #cosmicPanel .panel-grid {
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            }
+            #cosmicPanel .panel-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
             .panel-grid .data-item {
                 border-right: none;
                 border-bottom: 1px solid var(--border);
                 padding: 12px 4px;
             }
-            .panel-grid .data-item:last-child {
-                border-bottom: none;
-            }
-            body {
-                cursor: auto;
-            }
-            #customCursor {
-                display: none;
-            }
+            .panel-grid .data-item:last-child { border-bottom: none; }
+            body { cursor: auto; }
+            #customCursor { display: none; }
         }
 
         @media (max-width: 480px) {
-            .grid {
-                grid-template-columns: 1fr;
+            .grid { grid-template-columns: 1fr; }
+            .stat-grid { grid-template-columns: 1fr; }
+            .page-header h1 { font-size: 2rem; }
+            .navbar {
+                padding: 8px 16px;
+                gap: 12px;
             }
-            .stat-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .quote-block blockquote {
-                font-size: 1.4rem;
-            }
+            .nav-links { gap: 10px; }
+            .btn { width: 100%; justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ================================================================
-    加载动画
-    ================================================================ -->
-    <div class="loader" id="loader" aria-hidden="true">
+    <!-- 1. 全局加载器 -->
+    <div class="loader" id="loader">
         <div class="spinner"></div>
-        <div class="label">✦ 构筑回廊中</div>
+        <div class="label">正在加载星尘矩阵...</div>
     </div>
 
-    <!-- ================================================================
-    滚动进度条
-    ================================================================ -->
-    <div id="scrollProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-
-    <!-- ================================================================
-    自定义光标
-    ================================================================ -->
+    <!-- 2. 交互与状态层 -->
     <div id="customCursor"></div>
+    <div id="scrollProgress"></div>
 
-    <!-- ================================================================
-    画布层
-    ================================================================ -->
-    <canvas id="particles" aria-hidden="true"></canvas>
-    <canvas id="starTrail" aria-hidden="true"></canvas>
-    <div id="nebula" aria-hidden="true"></div>
-    <div id="glow" aria-hidden="true"></div>
+    <!-- 3. 画布背景演进层 -->
+    <canvas id="particles"></canvas>
+    <canvas id="starTrail"></canvas>
+    <div id="glow"></div>
+    <div id="nebula"></div>
 
-    <!-- ================================================================
-    Toast 容器
-    ================================================================ -->
-    <div class="toast-container" id="toastContainer" role="status" aria-live="polite"></div>
-
-    <!-- ================================================================
-    导航栏
-    ================================================================ -->
-    <nav class="navbar" aria-label="主导航">
-        <a href="https://GodGun-Project.github.io/index.html" class="logo">◈ <span>星尘</span>经纬</a>
+    <!-- 4. 浮动顶栏 -->
+    <nav class="navbar">
+        <a href="#" class="logo">星尘<span>回廊</span></a>
         <ul class="nav-links">
-            <li><a href="https://GodGun-Project.github.io/index.html">首页</a></li>
-            <li><a href="about.html" class="current" aria-current="page">构筑</a></li>
+            <li><a href="#dimensions" class="current">维度</a></li>
+            <li><a href="#timeline">纪元</a></li>
+            <li><a href="#observatory">观测</a></li>
+            <li><a href="#matrix">矩阵</a></li>
         </ul>
     </nav>
 
-    <!-- ================================================================
-    页面主体
-    ================================================================ -->
-    <main>
+    <!-- 5. 页头 Header -->
+    <header class="page-header">
+        <h1 class="reveal">星尘回廊 · 深度觉醒</h1>
+        <p class="sub reveal reveal-delay-1">在虚实之间搭建意义的脚手架</p>
+        <div class="cosmic-badge reveal reveal-delay-2">
+            <span class="dot"></span>
+            <span>系统状态：相位共振中 (Phase Synchronized)</span>
+        </div>
+    </header>
 
-        <!-- ===== Header ===== -->
-        <header class="page-header">
-            <h1>构筑 · 星尘回廊</h1>
-            <p class="sub">在虚实之间，搭建意义的脚手架</p>
-            <div class="cosmic-badge">
-                <span class="dot"></span>
-                <span>✦ 回廊状态 · 共振中</span>
-                <span class="dot" style="background:var(--cyan);animation-delay:0.6s;"></span>
-            </div>
-        </header>
+    <!-- 6. 主内容区 -->
+    <main class="container">
 
-        <!-- ===== 1. 回廊之始 ===== -->
-        <section id="origin" aria-labelledby="origin-title">
-            <div class="container">
-                <span class="section-label reveal">第 一 章</span>
-                <h2 class="section-title reveal" id="origin-title">回廊之始</h2>
-                <p class="section-desc reveal reveal-delay-1">每一座 <mark>回廊</mark> 都始于一次寂静的定位，在虚无中标记方向。</p>
-                <div class="grid grid-2" id="originGrid"></div>
-            </div>
-        </section>
+        <!-- Section 1: 核心维度网格 -->
+        <section id="dimensions">
+            <span class="section-label reveal">核心构建 · Core Dimensions</span>
+            <h2 class="section-title reveal reveal-delay-1">虚实交融的意识锚点</h2>
+            <p class="section-desc reveal reveal-delay-2">
+                以<mark>光量子拓扑</mark>为基石，构筑超越维度的知识体系与心灵回廊。
+            </p>
 
-        <!-- ===== 2. 构筑者群像 ===== -->
-        <section id="architects" aria-labelledby="architects-title">
-            <div class="container">
-                <span class="section-label reveal">第 二 章</span>
-                <h2 class="section-title reveal" id="architects-title">构筑者群像</h2>
-                <p class="section-desc reveal reveal-delay-1">那些 <mark>编织</mark> 星尘的双手，在暗处留下光的指纹。</p>
-                <div class="grid grid-3" id="architectsGrid"></div>
-            </div>
-        </section>
-
-        <!-- ===== 3. 时间之痕 ===== -->
-        <section id="trace" aria-labelledby="trace-title">
-            <div class="container">
-                <span class="section-label reveal">第 三 章</span>
-                <h2 class="section-title reveal" id="trace-title">时间之痕</h2>
-                <p class="section-desc reveal reveal-delay-1">从 <mark>零之点</mark> 到无尽回廊，每一步都刻入虚空。</p>
-                <div class="timeline-v" id="traceTimeline"></div>
-            </div>
-        </section>
-
-        <!-- ===== 4. 协议之网 ===== -->
-        <section id="protocols" aria-labelledby="protocols-title">
-            <div class="container">
-                <span class="section-label reveal">第 四 章</span>
-                <h2 class="section-title reveal" id="protocols-title">协议之网</h2>
-                <p class="section-desc reveal reveal-delay-1"><mark>符号</mark> 与 <mark>频率</mark> 编织成的协议，是构筑的底层语言。</p>
-                <div class="icon-grid" id="protocolsGrid"></div>
+            <div class="grid grid-2">
+                <div class="card reveal reveal-delay-1">
+                    <span class="icon">✨</span>
+                    <h3>星尘共振</h3>
+                    <p class="sub">Resonance Core</p>
+                    <p>捕获跨越光年的微弱信号，转化为可视化的认知图谱，让思维在浩瀚微粒中获得自洽。</p>
+                    <span class="tag">量子纠缠</span>
+                </div>
+                <div class="card reveal reveal-delay-2">
+                    <span class="icon">🔮</span>
+                    <h3>虚无透镜</h3>
+                    <p class="sub">Void Lens</p>
+                    <p>穿透纷繁复杂的现象迷雾，聚焦点线面的本质逻辑，在无序中重塑有序架构。</p>
+                    <span class="tag">高维折射</span>
+                </div>
+                <div class="card reveal reveal-delay-3">
+                    <span class="icon">🌌</span>
+                    <h3>维度重构</h3>
+                    <p class="sub">Dimension Shift</p>
+                    <p>打破传统时空边界，实现多维概念的平滑过渡与高维表达的直观呈现。</p>
+                    <span class="tag">拓扑变换</span>
+                </div>
+                <div class="card reveal reveal-delay-4">
+                    <span class="icon">⚡</span>
+                    <h3>觉醒脉冲</h3>
+                    <p class="sub">Awakening Pulse</p>
+                    <p>高频思想交汇点，触发链式认知突破，建立属于未来的意义脚手架。</p>
+                    <span class="tag">能量跃迁</span>
+                </div>
             </div>
         </section>
 
-        <!-- ===== 5. 数据之影 ===== -->
-        <section id="shadows" aria-labelledby="shadows-title">
-            <div class="container">
-                <span class="section-label reveal">第 五 章</span>
-                <h2 class="section-title reveal" id="shadows-title">数据之影</h2>
-                <p class="section-desc reveal reveal-delay-1">这些 <mark>数字</mark> 只是回声，却勾勒出虚空的结构。</p>
-                <div class="stat-grid" id="shadowsGrid"></div>
+        <!-- Section 2: 纪元时间线 -->
+        <section id="timeline">
+            <span class="section-label reveal">时间长河 · Chrono Continuum</span>
+            <h2 class="section-title reveal reveal-delay-1">演进纪元图谱</h2>
+
+            <div class="timeline-v">
+                <div class="tl-v-item reveal reveal-delay-1">
+                    <span class="epoch">纪元 01 · 始元觉醒</span>
+                    <h4>虚无中的第一缕微光</h4>
+                    <p>从混沌的原始数据海洋中提取秩序碎片，奠定星尘系统的基本物理法则与规则框架。</p>
+                </div>
+                <div class="tl-v-item reveal reveal-delay-2">
+                    <span class="epoch">纪元 02 · 拓扑结晶</span>
+                    <h4>维度脚手架搭建</h4>
+                    <p>跨越二维形态束缚，构建具象化三维矩阵，使抽象概念获得可触及的几何实体形态。</p>
+                </div>
+                <div class="tl-v-item reveal reveal-delay-3">
+                    <span class="epoch">纪元 03 · 星云共鸣</span>
+                    <h4>群体意识的连锁反应</h4>
+                    <p>节点全量互联，网络实现自我迭代与动态平衡，标志着深度觉醒阶段的彻底开启。</p>
+                </div>
             </div>
         </section>
 
-        <!-- ===== 6. 荣誉之廊 ===== -->
-        <section id="hall" aria-labelledby="hall-title">
-            <div class="container">
-                <span class="section-label reveal">第 六 章</span>
-                <h2 class="section-title reveal" id="hall-title">荣誉之廊</h2>
-                <p class="section-desc reveal reveal-delay-1">来自 <mark>虚无</mark> 的认可，如同星光映照暗面。</p>
-                <div class="grid grid-4" id="hallGrid"></div>
-            </div>
-        </section>
+        <!-- Section 3: 宇宙观测面板 -->
+        <section id="observatory">
+            <span class="section-label reveal">实时观测 · Cosmic Panel</span>
+            <h2 class="section-title reveal reveal-delay-1">星云实时遥测数据</h2>
 
-        <!-- ===== ✦ 宇宙数据面板（星座网络版） ===== -->
-        <section id="cosmic-data" aria-labelledby="cosmic-title">
-            <div class="container">
-                <span class="section-label reveal">✦ 实时 · 星尘遥测</span>
-                <h2 class="section-title reveal" id="cosmic-title" style="font-size:clamp(1.6rem,3vw,2.4rem);">
-                    宇宙数据流
-                    <span style="font-size:0.5rem;color:var(--muted);font-weight:300;letter-spacing:0.12em;display:block;margin-top:4px;">
-                        这些数据每秒都在变化，但从不指向任何实际意义
-                    </span>
-                </h2>
-
-                <div id="cosmicPanel">
-                    <canvas id="constellationCanvas"></canvas>
-                    <div class="panel-grid" id="dataPanelGrid">
-                        <div class="data-item">
-                            <span class="value" id="dataStarCount">0 <span class="unit">✦</span></span>
-                            <span class="label">星尘计数</span>
-                            <span class="trend">↗ 持续累积</span>
-                        </div>
-                        <div class="data-item">
-                            <span class="value" id="dataResonance">0.00 <span class="unit">Hz</span></span>
-                            <span class="label">回廊共振</span>
-                            <span class="trend">↗ 趋近黄金</span>
-                        </div>
-                        <div class="data-item">
-                            <span class="value" id="dataVoidDepth">0.00 <span class="unit">%</span></span>
-                            <span class="label">虚空渗透</span>
-                            <span class="trend">⟳ 动态平衡</span>
-                        </div>
-                        <div class="data-item">
-                            <span class="value" id="dataEntropy">0.00 <span class="unit">nats</span></span>
-                            <span class="label">结构熵</span>
-                            <span class="trend">↘ 缓慢衰减</span>
-                        </div>
+            <div id="cosmicPanel" class="reveal reveal-delay-2">
+                <canvas id="constellationCanvas"></canvas>
+                <div class="panel-grid">
+                    <div class="data-item">
+                        <span class="value" id="val1">108.4<span class="unit">GHz</span></span>
+                        <span class="label">共振频率</span>
+                        <span class="trend">↑ +2.4% 稳定</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="value" id="val2">0.0042<span class="unit">λ</span></span>
+                        <span class="label">相位偏移</span>
+                        <span class="trend">↓ -0.01% 精确</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="value" id="val3">99.98<span class="unit">%</span></span>
+                        <span class="label">脚手架稳固度</span>
+                        <span class="trend">STATUS: OPTIMAL</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="value" id="val4">1,024<span class="unit">Node</span></span>
+                        <span class="label">活性节点数</span>
+                        <span class="trend">↑ 持续扩展</span>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div style="text-align:center;margin-top:12px;">
-                    <button class="btn btn-secondary" id="resetDataBtn" style="font-size:0.55rem;padding:6px 20px;cursor:none;">
-                        ⟳ 重置遥测
-                    </button>
-                    <span style="color:var(--muted);font-size:0.5rem;letter-spacing:0.06em;margin-left:12px;">
-                        * 所有数据均为实时模拟，无任何物理意义
-                    </span>
+        <!-- Section 4: 元素矩阵与统计 -->
+        <section id="matrix">
+            <span class="section-label reveal">矩阵与指标 · Elements & Metrics</span>
+            <h2 class="section-title reveal reveal-delay-1">核心要素分类</h2>
+
+            <div class="icon-grid reveal reveal-delay-2">
+                <div class="icon-card"><span class="emoji">🪐</span><span class="label">星体</span></div>
+                <div class="icon-card"><span class="emoji">☄️</span><span class="label">彗流</span></div>
+                <div class="icon-card"><span class="emoji">🌟</span><span class="label">恒星</span></div>
+                <div class="icon-card"><span class="emoji">💫</span><span class="label">轨跃</span></div>
+                <div class="icon-card"><span class="emoji">🛸</span><span class="label">探索</span></div>
+                <div class="icon-card"><span class="emoji">🌑</span><span class="label">暗质</span></div>
+            </div>
+
+            <div class="stat-grid reveal reveal-delay-3">
+                <div class="stat-item">
+                    <div class="number">128</div>
+                    <div class="label">意识节点</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">2.5K</div>
+                    <div class="label">光量子连线</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">0.001</div>
+                    <div class="label">延时 (ms)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">∞</div >
+                    <div class="label">可能性</div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== 终章：共鸣 ===== -->
-        <section id="echo" aria-labelledby="echo-title">
-            <div class="container">
-                <div class="quote-block reveal">
-                    <blockquote>“所有的回廊都通向同一个中心——那里空无一物，却又充满一切。”</blockquote>
-                    <div class="attr">—— 星尘信使 · 永续回廊</div>
-                </div>
-                <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:30px;">
-                    <button class="btn btn-primary" id="echoBtn">◈ 发送共鸣</button>
-                    <button class="btn btn-secondary" id="topBtn">⟳ 归零</button>
-                </div>
+        <!-- Section 5: 哲思鸣响 -->
+        <section>
+            <div class="quote-block reveal">
+                <blockquote>“在浩瀚的虚无中，每一次构建都是对意义的再次确认。”</blockquote>
+                <div class="attr">— 《星尘回廊手记》</div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;" class="reveal reveal-delay-2">
+                <button class="btn btn-primary" id="echoBtn">
+                    <span>触碰共鸣</span>
+                </button>
             </div>
         </section>
 
     </main>
 
-    <!-- ================================================================
-    Footer
-    ================================================================ -->
+    <!-- 7. 页脚 Footer -->
     <footer class="page-footer">
-        <div class="container">
-            <ul class="links">
-                <li><a href="https://GodGun-Project.github.io/index.html">首页</a></li>
-                <li><a href="about.html">构筑</a></li>
-            </ul>
-            <p class="note">星尘经纬 · 构筑回廊 · 所有数据均为虚构</p>
-        </div>
+        <ul class="links">
+            <li><a href="#">隐私协议</a></li>
+            <li><a href="#">系统架构</a></li>
+            <li><a href="#">拓扑节点</a></li>
+            <li><a href="#">联系控制台</a></li>
+        </ul>
+        <div class="note">© 2026 STARDUST CORRIDOR. ALL RIGHTS RESERVED.</div>
     </footer>
 
+    <!-- 8. Toast 容器 -->
+    <div class="toast-container" id="toastContainer"></div>
+
     <!-- ================================================================
-    JavaScript
-    ================================================================ -->
+       9. 交互特效引擎 (JavaScript)
+       ================================================================ -->
     <script>
-        (function() {
-            'use strict';
+        document.addEventListener('DOMContentLoaded', () => {
 
-            // ============================================================
-            //  Loader
-            // ============================================================
-            const loader = document.getElementById('loader');
+            // A. 加载器隐藏
             window.addEventListener('load', () => {
-                setTimeout(() => loader.classList.add('hidden'), 600);
+                const loader = document.getElementById('loader');
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                }, 400);
             });
-            setTimeout(() => loader.classList.add('hidden'), 2000);
 
-            // ============================================================
-            //  Custom Cursor
-            // ============================================================
+            // B. 自定义光标与悬停放大
             const cursor = document.getElementById('customCursor');
-            if (window.innerWidth > 768) {
-                document.addEventListener('mousemove', (e) => {
-                    cursor.style.left = e.clientX + 'px';
-                    cursor.style.top = e.clientY + 'px';
-                });
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
 
-                document.addEventListener('mouseover', (e) => {
-                    const target = e.target.closest('.card, .tl-v-item, .icon-card, .stat-item, .btn, a, .data-item');
-                    if (target) cursor.classList.add('hover');
-                    else cursor.classList.remove('hover');
-                });
+            const interactiveElements = document.querySelectorAll('a, button, .card, .icon-card, .stat-item, .tl-v-item');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
 
-                document.addEventListener('mouseout', () => {
-                    cursor.classList.remove('hover');
-                });
-            } else {
-                cursor.style.display = 'none';
+            // C. 滚动进度条与背景 Glow 跟随
+            const scrollProgress = document.getElementById('scrollProgress');
+            const glow = document.getElementById('glow');
+
+            window.addEventListener('scroll', () => {
+                const winScroll = document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                scrollProgress.style.width = scrolled + '%';
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                const x = (e.clientX / window.innerWidth) * 100;
+                const y = (e.clientY / window.innerHeight) * 100;
+                glow.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(217, 198, 169, 0.03), transparent 60%)`;
+            });
+
+            // D. 背景粒子系统 (Particles Canvas)
+            const pCanvas = document.getElementById('particles');
+            const pCtx = pCanvas.getContext('2d');
+            let pArray = [];
+
+            function resizePCanvas() {
+                pCanvas.width = window.innerWidth;
+                pCanvas.height = window.innerHeight;
+            }
+            resizePCanvas();
+            window.addEventListener('resize', resizePCanvas);
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+                reset() {
+                    this.x = Math.random() * pCanvas.width;
+                    this.y = Math.random() * pCanvas.height;
+                    this.size = Math.random() * 1.5 + 0.5;
+                    this.speedX = (Math.random() - 0.5) * 0.3;
+                    this.speedY = (Math.random() - 0.5) * 0.3;
+                    this.alpha = Math.random() * 0.5 + 0.1;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x < 0 || this.x > pCanvas.width || this.y < 0 || this.y > pCanvas.height) {
+                        this.reset();
+                    }
+                }
+                draw() {
+                    pCtx.fillStyle = `rgba(217, 198, 169, ${this.alpha})`;
+                    pCtx.beginPath();
+                    pCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    pCtx.fill();
+                }
             }
 
-            // ============================================================
-            //  Scroll Progress
-            // ============================================================
-            const progressBar = document.getElementById('scrollProgress');
-            window.addEventListener('scroll', () => {
-                const scroll = window.scrollY;
-                const height = document.documentElement.scrollHeight - window.innerHeight;
-                const pct = height > 0 ? (scroll / height) * 100 : 0;
-                progressBar.style.width = pct + '%';
-                progressBar.setAttribute('aria-valuenow', pct);
+            for (let i = 0; i < 60; i++) pArray.push(new Particle());
+
+            function animateParticles() {
+                pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+                pArray.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animateParticles);
+            }
+            animateParticles();
+
+            // E. 星座数据网络 (Constellation Canvas inside #cosmicPanel)
+            const cCanvas = document.getElementById('constellationCanvas');
+            const cCtx = cCanvas.getContext('2d');
+            let nodes = [];
+
+            function resizeCCanvas() {
+                const parent = cCanvas.parentElement;
+                cCanvas.width = parent.clientWidth;
+                cCanvas.height = parent.clientHeight;
+            }
+            resizeCCanvas();
+            window.addEventListener('resize', resizeCCanvas);
+
+            class Node {
+                constructor() {
+                    this.x = Math.random() * cCanvas.width;
+                    this.y = Math.random() * cCanvas.height;
+                    this.vx = (Math.random() - 0.5) * 0.8;
+                    this.vy = (Math.random() - 0.5) * 0.8;
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > cCanvas.width) this.vx *= -1;
+                    if (this.y < 0 || this.y > cCanvas.height) this.vy *= -1;
+                }
+            }
+
+            for (let i = 0; i < 30; i++) nodes.push(new Node());
+
+            function animateConstellation() {
+                cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height);
+
+                for (let i = 0; i < nodes.length; i++) {
+                    nodes[i].update();
+                    cCtx.fillStyle = '#d9c6a9';
+                    cCtx.beginPath();
+                    cCtx.arc(nodes[i].x, nodes[i].y, 2, 0, Math.PI * 2);
+                    cCtx.fill();
+
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if (dist < 100) {
+                            cCtx.strokeStyle = `rgba(140, 212, 232, ${1 - dist / 100})`;
+                            cCtx.lineWidth = 0.5;
+                            cCtx.beginPath();
+                            cCtx.moveTo(nodes[i].x, nodes[i].y);
+                            cCtx.lineTo(nodes[j].x, nodes[j].y);
+                            cCtx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animateConstellation);
+            }
+            animateConstellation();
+
+            // F. 3D 卡片视差倾斜 (3D Tilt)
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX = ((y - centerY) / centerY) * -10;
+                    const rotateY = ((x - centerX) / centerX) * 10;
+
+                    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+                });
             });
 
-            // ============================================================
-            //  Toast System
-            // ============================================================
+            // G. Intersection Observer 滚动揭示
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            reveals.forEach(el => observer.observe(el));
+
+            // H. 按钮水波纹与 Toast 触发
+            const echoBtn = document.getElementById('echoBtn');
             const toastContainer = document.getElementById('toastContainer');
 
-            function showToast(msg, duration) {
-                duration = duration || 2200;
-                const t = document.createElement('div');
-                t.className = 'toast';
-                t.textContent = msg;
-                toastContainer.appendChild(t);
-                requestAnimationFrame(() => t.classList.add('show'));
+            function showToast(message) {
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.textContent = message;
+                toastContainer.appendChild(toast);
+
+                setTimeout(() => toast.classList.add('show'), 10);
                 setTimeout(() => {
-                    t.classList.remove('show');
-                    setTimeout(() => { if (t.parentNode) t.parentNode.removeChild(t); }, 400);
-                }, duration);
+                    toast.classList.remove('show');
+                    setTimeout(() => toast.remove(), 400);
+                }, 3000);
             }
 
-            // ============================================================
-            //  Particles (增强版)
-            // ============================================================
-            (function initParticles() {
-                const c = document.getElementById('particles');
-                const ctx = c.getContext('2d');
-                let w, h, particles = [];
-                const COUNT = 260;
-
-                function resize() {
-                    w = window.innerWidth;
-                    h = window.innerHeight;
-                    c.width = w;
-                    c.height = h;
-                }
-
-                function create() {
-                    particles = [];
-                    const colors = ['rgba(217,198,169,', 'rgba(140,212,232,', 'rgba(224,176,176,'];
-                    for (let i = 0; i < COUNT; i++) {
-                        const base = colors[i % colors.length];
-                        particles.push({
-                            x: Math.random() * w,
-                            y: Math.random() * h,
-                            r: 0.5 + Math.random() * 3.5,
-                            dx: (Math.random() - 0.5) * 0.35,
-                            dy: (Math.random() - 0.5) * 0.35,
-                            a: 0.1 + Math.random() * 0.5,
-                            color: base,
-                            phase: Math.random() * Math.PI * 2,
-                            pulse: 0.4 + Math.random() * 0.6
-                        });
-                    }
-                }
-
-                function draw() {
-                    ctx.clearRect(0, 0, w, h);
-                    const time = Date.now() / 4000;
-
-                    // 连线
-                    for (let i = 0; i < particles.length; i++) {
-                        for (let j = i + 1; j < particles.length; j++) {
-                            const dx = particles[i].x - particles[j].x;
-                            const dy = particles[i].y - particles[j].y;
-                            const dist = Math.sqrt(dx * dx + dy * dy);
-                            if (dist < 160) {
-                                const alpha = 0.035 * (1 - dist / 160);
-                                ctx.beginPath();
-                                ctx.moveTo(particles[i].x, particles[i].y);
-                                ctx.lineTo(particles[j].x, particles[j].y);
-                                ctx.strokeStyle = `rgba(217,198,169,${alpha})`;
-                                ctx.lineWidth = 0.4;
-                                ctx.stroke();
-                            }
-                        }
-                    }
-
-                    for (const p of particles) {
-                        const pulseFactor = 0.7 + 0.3 * Math.sin(time + p.phase);
-                        const r = p.r * (0.8 + 0.2 * pulseFactor);
-                        const alpha = p.a * (0.6 + 0.4 * pulseFactor);
-
-                        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r * 3.5);
-                        grad.addColorStop(0, p.color + (alpha * 0.5) + ')');
-                        grad.addColorStop(1, p.color + '0)');
-                        ctx.beginPath();
-                        ctx.arc(p.x, p.y, r * 3.5, 0, Math.PI * 2);
-                        ctx.fillStyle = grad;
-                        ctx.fill();
-
-                        ctx.beginPath();
-                        ctx.arc(p.x, p.y, r * 0.5, 0, Math.PI * 2);
-                        ctx.fillStyle = p.color + (alpha * 0.9) + ')';
-                        ctx.fill();
-
-                        p.x += p.dx;
-                        p.y += p.dy;
-                        if (p.x < 0 || p.x > w) p.dx *= -1;
-                        if (p.y < 0 || p.y > h) p.dy *= -1;
-                    }
-                    requestAnimationFrame(draw);
-                }
-
-                resize();
-                create();
-                draw();
-                window.addEventListener('resize', () => { resize();
-                    create(); });
-            })();
-
-            // ============================================================
-            //  Star Trail (鼠标拖尾)
-            // ============================================================
-            (function initStarTrail() {
-                const c = document.getElementById('starTrail');
-                const ctx = c.getContext('2d');
-                let w, h;
-                const trails = [];
-                const MAX_TRAILS = 70;
-
-                function resize() {
-                    w = window.innerWidth;
-                    h = window.innerHeight;
-                    c.width = w;
-                    c.height = h;
-                }
-                resize();
-                window.addEventListener('resize', resize);
-
-                let mouseX = -1000,
-                    mouseY = -1000;
-                document.addEventListener('mousemove', (e) => {
-                    mouseX = e.clientX;
-                    mouseY = e.clientY;
-                    trails.push({
-                        x: mouseX,
-                        y: mouseY,
-                        life: 1.0,
-                        size: 2 + Math.random() * 5,
-                        dx: (Math.random() - 0.5) * 0.8,
-                        dy: (Math.random() - 0.5) * 0.8 - 0.4
-                    });
-                    if (trails.length > MAX_TRAILS) trails.shift();
-                });
-
-                document.addEventListener('touchmove', (e) => {
-                    const touch = e.touches[0];
-                    if (touch) {
-                        mouseX = touch.clientX;
-                        mouseY = touch.clientY;
-                        trails.push({
-                            x: mouseX,
-                            y: mouseY,
-                            life: 1.0,
-                            size: 3 + Math.random() * 6,
-                            dx: (Math.random() - 0.5) * 1.0,
-                            dy: (Math.random() - 0.5) * 1.0 - 0.5
-                        });
-                        if (trails.length > MAX_TRAILS) trails.shift();
-                    }
-                }, { passive: true });
-
-                function draw() {
-                    ctx.clearRect(0, 0, w, h);
-                    for (let i = trails.length - 1; i >= 0; i--) {
-                        const t = trails[i];
-                        t.life -= 0.012;
-                        t.x += t.dx * 0.3;
-                        t.y += t.dy * 0.3;
-                        t.dy += 0.02;
-
-                        if (t.life <= 0) { trails.splice(i, 1); continue; }
-
-                        const alpha = t.life * 0.5;
-                        const size = t.size * (0.3 + 0.7 * t.life);
-
-                        const grad = ctx.createRadialGradient(t.x, t.y, 0, t.x, t.y, size * 4);
-                        grad.addColorStop(0, `rgba(217,198,169,${alpha * 0.4})`);
-                        grad.addColorStop(0.5, `rgba(140,212,232,${alpha * 0.15})`);
-                        grad.addColorStop(1, 'rgba(217,198,169,0)');
-                        ctx.beginPath();
-                        ctx.arc(t.x, t.y, size * 4, 0, Math.PI * 2);
-                        ctx.fillStyle = grad;
-                        ctx.fill();
-
-                        ctx.beginPath();
-                        ctx.arc(t.x, t.y, size * 0.4, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(255,255,255,${alpha * 0.6})`;
-                        ctx.fill();
-                    }
-                    requestAnimationFrame(draw);
-                }
-                draw();
-            })();
-
-            // ============================================================
-            //  Glow follow
-            // ============================================================
-            (function initGlow() {
-                const glow = document.getElementById('glow');
-                document.addEventListener('mousemove', (e) => {
-                    const mx = (e.clientX / window.innerWidth) * 100;
-                    const my = (e.clientY / window.innerHeight) * 100;
-                    glow.style.background =
-                        `radial-gradient(ellipse at ${mx}% ${my}%, rgba(217,198,169,0.05), transparent 60%)`;
-                });
-                document.addEventListener('touchmove', (e) => {
-                    const touch = e.touches[0];
-                    if (touch) {
-                        const mx = (touch.clientX / window.innerWidth) * 100;
-                        const my = (touch.clientY / window.innerHeight) * 100;
-                        glow.style.background =
-                            `radial-gradient(ellipse at ${mx}% ${my}%, rgba(217,198,169,0.05), transparent 60%)`;
-                    }
-                }, { passive: true });
-            })();
-
-            // ============================================================
-            //  Constellation Network (数据面板连线)
-            // ============================================================
-            (function initConstellation() {
-                const canvas = document.getElementById('constellationCanvas');
-                const ctx = canvas.getContext('2d');
-                let w, h;
-
-                function resize() {
-                    const rect = canvas.parentElement.getBoundingClientRect();
-                    w = rect.width;
-                    h = rect.height;
-                    canvas.width = w;
-                    canvas.height = h;
-                }
-
-                const panel = document.getElementById('cosmicPanel');
-                if (!panel) return;
-                const resizeObserver = new ResizeObserver(() => resize());
-                resizeObserver.observe(panel);
-                resize();
-
-                let nodes = [];
-                let animId = null;
-
-                function updateNodes() {
-                    const items = document.querySelectorAll('.panel-grid .data-item');
-                    nodes = [];
-                    items.forEach((el, idx) => {
-                        const rect = el.getBoundingClientRect();
-                        const panelRect = panel.getBoundingClientRect();
-                        nodes.push({
-                            x: rect.left - panelRect.left + rect.width / 2,
-                            y: rect.top - panelRect.top + rect.height / 2,
-                            targetX: rect.left - panelRect.left + rect.width / 2,
-                            targetY: rect.top - panelRect.top + rect.height / 2,
-                            vx: 0,
-                            vy: 0,
-                            idx: idx
-                        });
-                    });
-                }
-
-                function drawNetwork() {
-                    if (nodes.length < 2) {
-                        animId = requestAnimationFrame(drawNetwork);
-                        return;
-                    }
-
-                    ctx.clearRect(0, 0, w, h);
-
-                    // 平滑跟随
-                    nodes.forEach(n => {
-                        n.x += (n.targetX - n.x) * 0.08;
-                        n.y += (n.targetY - n.y) * 0.08;
-                    });
-
-                    // 画连线
-                    for (let i = 0; i < nodes.length; i++) {
-                        for (let j = i + 1; j < nodes.length; j++) {
-                            const dx = nodes[i].x - nodes[j].x;
-                            const dy = nodes[i].y - nodes[j].y;
-                            const dist = Math.sqrt(dx * dx + dy * dy);
-                            const maxDist = Math.min(w, h) * 0.6;
-                            if (dist < maxDist) {
-                                const alpha = 0.15 * (1 - dist / maxDist);
-                                ctx.beginPath();
-                                ctx.moveTo(nodes[i].x, nodes[i].y);
-                                ctx.lineTo(nodes[j].x, nodes[j].y);
-                                ctx.strokeStyle = `rgba(217,198,169,${alpha})`;
-                                ctx.lineWidth = 0.8;
-                                ctx.stroke();
-
-                                // 节点脉冲
-                                if (i === 0 || j === 0) {
-                                    const pulse = 0.6 + 0.4 * Math.sin(Date.now() / 1500 + i + j);
-                                    ctx.beginPath();
-                                    ctx.arc(nodes[i].x, nodes[i].y, 3 * pulse, 0, Math.PI * 2);
-                                    ctx.fillStyle = `rgba(217,198,169,${0.2 * pulse})`;
-                                    ctx.fill();
-                                }
-                            }
-                        }
-                    }
-
-                    // 画节点光晕
-                    nodes.forEach(n => {
-                        const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, 12);
-                        grad.addColorStop(0, 'rgba(217,198,169,0.15)');
-                        grad.addColorStop(1, 'rgba(217,198,169,0)');
-                        ctx.beginPath();
-                        ctx.arc(n.x, n.y, 12, 0, Math.PI * 2);
-                        ctx.fillStyle = grad;
-                        ctx.fill();
-                    });
-
-                    animId = requestAnimationFrame(drawNetwork);
-                }
-
-                // 更新节点位置（跟随布局变化）
-                const observer = new MutationObserver(() => {
-                    updateNodes();
-                });
-                observer.observe(document.getElementById('dataPanelGrid'), { childList: true, subtree: true });
-
-                window.addEventListener('resize', () => {
-                    resize();
-                    setTimeout(updateNodes, 100);
-                });
-
-                // 初始化
-                setTimeout(() => {
-                    updateNodes();
-                    drawNetwork();
-                }, 300);
-
-                // 暴露重置
-                document.getElementById('resetDataBtn').addEventListener('click', () => {
-                    updateNodes();
-                });
-            })();
-
-            // ============================================================
-            //  3D Tilt Effect on Cards
-            // ============================================================
-            (function initTilt() {
-                const cards = document.querySelectorAll('.card');
-                cards.forEach(card => {
-                    card.addEventListener('mousemove', (e) => {
-                        const rect = card.getBoundingClientRect();
-                        const x = (e.clientX - rect.left) / rect.width - 0.5;
-                        const y = (e.clientY - rect.top) / rect.height - 0.5;
-                        card.style.transform =
-                            `perspective(800px) rotateX(${y * 8}deg) rotateY(${x * 8}deg) translateY(-4px)`;
-                    });
-                    card.addEventListener('mouseleave', () => {
-                        card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0)';
-                    });
-                });
-            })();
-
-            // ============================================================
-            //  Content Data
-            // ============================================================
-            const originData = [
-                { icon: '◈', title: '定位之点', sub: '零坐标', desc: '在虚空中标记第一个原点，所有回廊由此延伸。' },
-                { icon: '✦', title: '静默基线', sub: '背景辐射', desc: '从未被观测的震动中提取初始频率，作为构筑的基准。' },
-                { icon: '⌇', title: '边界裂隙', sub: '第一切口', desc: '在连续的虚无中制造第一道裂缝，让光得以渗入。' },
-                { icon: '∞', title: '递归映射', sub: '自相似', desc: '将原点不断映射到自身，生成无限嵌套的结构。' }
-            ];
-
-            const architectsData = [
-                { icon: '✧', title: '光之定位者', sub: 'α 号', desc: '精确测量光在虚空中的偏转，绘制导航图谱。' },
-                { icon: '⋆', title: '暗影织机', sub: 'β 号', desc: '在暗物质流中编织可见的图案，让无形显现。' },
-                { icon: '⊹', title: '频率调谐师', sub: 'γ 号', desc: '调整振动的间隔，使不和谐的声波达成共鸣。' },
-                { icon: '☯', title: '拓扑描摹者', sub: 'δ 号', desc: '描绘梦境的流形，为混沌建立边界。' },
-                { icon: '◉', title: '星尘抄写员', sub: 'ε 号', desc: '记录每一粒星尘的轨迹，编码成可读的文本。' },
-                { icon: '⌘', title: '边界守望者', sub: 'ζ 号', desc: '在回廊的尽头聆听，捕捉来自不可知处的信号。' }
-            ];
-
-            const traceData = [
-                { epoch: '· 虚无纪元 ·', title: '零之点', desc: '我们在此处放下第一块基石，没有重量，只有指向。' },
-                { epoch: '· 幻构纪元 ·', title: '第一道回廊', desc: '光沿着裂缝延伸，形成最初的路径，两侧开始聚集星尘。' },
-                { epoch: '· 织造纪元 ·', title: '编织网络', desc: '路径交织成网，节点之间开始交换信息，结构逐渐成形。' },
-                { epoch: '· 裂隙纪元 ·', title: '多界渗透', desc: '回廊向不同维度延伸，每一层都映射出不同的侧影。' },
-                { epoch: '· 共鸣纪元 ·', title: '整体振动', desc: '所有回廊达到同一频率，整个构筑物开始同步呼吸。' },
-                { epoch: '· 静默纪元 ·', title: '暂停与等待', desc: '我们暂时停止扩张，聆听构筑物自身的低语。' }
-            ];
-
-            const protocolsData = [
-                { emoji: '⟡', label: '光速协议' },
-                { emoji: '◉', label: '暗流编码' },
-                { emoji: '⏣', label: '时态折叠' },
-                { emoji: '☍', label: '空间接引' },
-                { emoji: '⨁', label: '量子映射' },
-                { emoji: '⨂', label: '张量路由' },
-                { emoji: '⊚', label: '双面对齐' },
-                { emoji: '⌘', label: '递归中继' },
-                { emoji: '✤', label: '螺旋索引' },
-                { emoji: '⌾', label: '奇点镜像' }
-            ];
-
-            const shadowsData = [
-                { number: '∅', label: '虚空深度' },
-                { number: '7.3e⁹', label: '星尘计数' },
-                { number: '0.618', label: '黄金回响' },
-                { number: '4.2', label: '光年/拍' },
-                { number: '∞', label: '可延展性' },
-                { number: '☯', label: '平衡指数' }
-            ];
-
-            const hallData = [
-                { icon: '🏆', title: '虚空奖章', sub: '2024 · 构筑类' },
-                { icon: '🏅', title: '星尘认证', sub: '2023 · 编织类' },
-                { icon: '🎖️', title: '边缘先锋', sub: '2022 · 探索类' },
-                { icon: '🌌', title: '宇宙荣誉', sub: '2021 · 共鸣类' },
-                { icon: '✨', title: '光之提名', sub: '2020 · 视觉类' },
-                { icon: '⚡', title: '暗流奖', sub: '2019 · 创新类' }
-            ];
-
-            // ============================================================
-            //  Render Helpers
-            // ============================================================
-            function renderGrid(containerId, data, templateFn) {
-                const el = document.getElementById(containerId);
-                if (!el) return;
-                el.innerHTML = '';
-                data.forEach((item, idx) => {
-                    const div = document.createElement('div');
-                    div.className = `reveal reveal-delay-${(idx % 5) + 1}`;
-                    div.innerHTML = templateFn(item);
-                    div.addEventListener('click', function() {
-                        const title = item.title || item.label || item.epoch || '未知';
-                        showToast(`◈ 触碰 · ${title}`);
-                        playTone(300 + Math.random() * 300, 0.2);
-                    });
-                    el.appendChild(div);
-                });
-            }
-
-            renderGrid('originGrid', originData, (d) => `
-                <div class="card">
-                    <span class="icon">${d.icon}</span>
-                    <h3>${d.title}</h3>
-                    <div class="sub">${d.sub}</div>
-                    <p>${d.desc}</p>
-                    <span class="tag">✦ 回廊</span>
-                </div>
-            `);
-
-            renderGrid('architectsGrid', architectsData, (d) => `
-                <div class="card">
-                    <span class="icon">${d.icon}</span>
-                    <h3>${d.title}</h3>
-                    <div class="sub">${d.sub}</div>
-                    <p>${d.desc}</p>
-                    <span class="tag">◈ 构筑者</span>
-                </div>
-            `);
-
-            const traceEl = document.getElementById('traceTimeline');
-            traceEl.innerHTML = '';
-            traceData.forEach((item, idx) => {
-                const div = document.createElement('div');
-                div.className = `tl-v-item reveal reveal-delay-${(idx % 5) + 1}`;
-                div.innerHTML = `
-                    <div class="epoch">${item.epoch}</div>
-                    <h4>${item.title}</h4>
-                    <p>${item.desc}</p>
-                `;
-                div.addEventListener('click', function() {
-                    showToast(`⌇ 回溯 · ${item.title}`);
-                    playTone(250 + Math.random() * 250, 0.25);
-                });
-                traceEl.appendChild(div);
-            });
-
-            renderGrid('protocolsGrid', protocolsData, (d) => `
-                <div class="icon-card">
-                    <span class="emoji">${d.emoji}</span>
-                    <div class="label">${d.label}</div>
-                </div>
-            `);
-
-            const shadowsEl = document.getElementById('shadowsGrid');
-            shadowsEl.innerHTML = '';
-            shadowsData.forEach((item, idx) => {
-                const div = document.createElement('div');
-                div.className = `stat-item reveal reveal-delay-${(idx % 5) + 1}`;
-                div.innerHTML = `
-                    <div class="number">${item.number}</div>
-                    <div class="label">${item.label}</div>
-                `;
-                div.addEventListener('click', function() {
-                    showToast(`📊 读数 · ${item.label}`);
-                    playTone(400 + Math.random() * 200, 0.15);
-                });
-                shadowsEl.appendChild(div);
-            });
-
-            renderGrid('hallGrid', hallData, (d) => `
-                <div class="card" style="text-align:center; padding: 28px 16px;">
-                    <span class="icon" style="font-size:2.4rem;">${d.icon}</span>
-                    <h3 style="font-size:1rem;">${d.title}</h3>
-                    <div class="sub" style="font-size:0.55rem;">${d.sub}</div>
-                    <span class="tag">🌟 荣誉</span>
-                </div>
-            `);
-
-            // ============================================================
-            //  Cosmic Data Simulation
-            // ============================================================
-            let dataState = {
-                starCount: 0,
-                resonance: 0,
-                voidDepth: 0,
-                entropy: 0
-            };
-
-            function updateCosmicData() {
-                const t = Date.now() / 1000;
-                dataState.starCount = Math.floor(1.2e9 + 3.7e8 * Math.sin(t * 0.031) +
-                    1.1e8 * Math.sin(t * 0.073 + 0.7) +
-                    4.2e7 * Math.sin(t * 0.011 + 2.1));
-                dataState.resonance = (0.618 + 0.042 * Math.sin(t * 0.047) +
-                    0.019 * Math.sin(t * 0.113 + 1.3) +
-                    0.008 * Math.sin(t * 0.007 + 0.5));
-                dataState.voidDepth = (42.7 + 6.3 * Math.sin(t * 0.019) +
-                    3.1 * Math.sin(t * 0.061 + 0.9) +
-                    1.7 * Math.sin(t * 0.103 + 2.7)) % 100;
-                dataState.entropy = (3.14 + 0.42 * Math.sin(t * 0.029) +
-                    0.19 * Math.sin(t * 0.071 + 0.3) +
-                    0.08 * Math.sin(t * 0.133 + 1.9));
-
-                document.getElementById('dataStarCount').innerHTML =
-                    dataState.starCount.toLocaleString() + ' <span class="unit">✦</span>';
-                document.getElementById('dataResonance').innerHTML =
-                    dataState.resonance.toFixed(3) + ' <span class="unit">Hz</span>';
-                document.getElementById('dataVoidDepth').innerHTML =
-                    dataState.voidDepth.toFixed(2) + ' <span class="unit">%</span>';
-                document.getElementById('dataEntropy').innerHTML =
-                    dataState.entropy.toFixed(3) + ' <span class="unit">nats</span>';
-
-                requestAnimationFrame(updateCosmicData);
-            }
-            updateCosmicData();
-
-            document.getElementById('resetDataBtn').addEventListener('click', function() {
-                showToast('⟳ 遥测数据已重置 · 宇宙重新校准');
-                playTone(440, 0.3);
-                const panel = document.getElementById('cosmicPanel');
-                panel.style.transition = 'opacity 0.3s';
-                panel.style.opacity = '0.4';
-                setTimeout(() => { panel.style.opacity = '1'; }, 300);
-            });
-
-            // ============================================================
-            //  Buttons & Ripple
-            // ============================================================
-            document.getElementById('echoBtn').addEventListener('click', function(e) {
-                showToast('◈ 共鸣已发送 · 回廊深处传来轻响');
-                playTone(523, 0.4);
-                setTimeout(() => playTone(659, 0.3), 150);
-                setTimeout(() => playTone(784, 0.3), 300);
-
-                // Ripple
+            echoBtn.addEventListener('click', function (e) {
+                // 水波纹效果
                 const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
                 const ripple = document.createElement('span');
                 ripple.className = 'ripple-effect';
-                const size = Math.max(rect.width, rect.height);
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
-                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
                 this.appendChild(ripple);
+
                 setTimeout(() => ripple.remove(), 600);
+
+                // 弹出 Toast
+                showToast('已向星尘网络发射共鸣脉冲信号 🌌');
             });
-
-            document.getElementById('topBtn').addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                showToast('⟳ 归零 · 回到源点');
-                playTone(200, 0.3);
-                setTimeout(() => playTone(160, 0.3), 150);
-            });
-
-            // ============================================================
-            //  Audio
-            // ============================================================
-            let audioCtx = null;
-
-            function playTone(freq, dur) {
-                try {
-                    if (!audioCtx) audioCtx = new(window.AudioContext || window.webkitAudioContext)();
-                    const osc = audioCtx.createOscillator();
-                    const gain = audioCtx.createGain();
-                    osc.type = 'sine';
-                    osc.frequency.value = freq;
-                    gain.gain.setValueAtTime(0.035, audioCtx.currentTime);
-                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
-                    osc.connect(gain);
-                    gain.connect(audioCtx.destination);
-                    osc.start();
-                    osc.stop(audioCtx.currentTime + dur);
-                } catch (_) {}
-            }
-
-            // ============================================================
-            //  Reveal Observer
-            // ============================================================
-            (function initReveal() {
-                const els = document.querySelectorAll('.reveal');
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(e => {
-                        if (e.isIntersecting) e.target.classList.add('visible');
-                    });
-                }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-                els.forEach(el => observer.observe(el));
-                setTimeout(() => {
-                    els.forEach(el => {
-                        if (el.getBoundingClientRect().top < window.innerHeight - 40)
-                            el.classList.add('visible');
-                    });
-                }, 200);
-            })();
-
-            // ============================================================
-            //  Navigation
-            // ============================================================
-            document.querySelectorAll('.nav-links a, .page-footer .links a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-                    if (href && href.startsWith('#')) {
-                        e.preventDefault();
-                        const target = document.querySelector(href);
-                        if (target) {
-                            target.scrollIntoView({ behavior: 'smooth' });
-                            const id = href.substring(1);
-                            setTimeout(() => showToast(`↗ 导航 · 进入 ${id}`), 200);
-                        }
-                    }
-                    if (href && (href.includes('index') || href.includes('about'))) {
-                        showToast(`↗ 导航至 ${this.textContent.trim()}`, 1000);
-                    }
-                });
-            });
-
-            // ============================================================
-            //  Console Easter Egg
-            // ============================================================
-            console.log('✦ 构筑 · 星尘回廊 · 深度觉醒版');
-            console.log('◈ 所有数据均为虚构，无实际物理意义');
-            console.log('∞ 每一块基石都指向虚空深处');
-            console.log('☯ 你现在看到的，是回廊的呼吸');
-            console.log('⌨️ 快捷键: Ctrl+R 重置宇宙, Ctrl+E 共鸣脉冲');
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'r' && e.ctrlKey) {
-                    e.preventDefault();
-                    showToast('⟳ 宇宙已重新校准 · 所有数据重置');
-                    document.getElementById('resetDataBtn').click();
-                }
-                if (e.key === 'e' && e.ctrlKey) {
-                    e.preventDefault();
-                    showToast('◈ 共鸣脉冲已触发');
-                    playTone(440, 0.3);
-                    setTimeout(() => playTone(554, 0.3), 120);
-                    setTimeout(() => playTone(659, 0.3), 240);
-                }
-            });
-
-        })();
+        });
     </script>
-
 </body>
 </html>
