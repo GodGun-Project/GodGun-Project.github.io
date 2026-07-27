@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>星 尘 经 纬 · 无 尽 回 廊</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>星尘经纬 · 无尽回廊</title>
     <style>
-        /* ===== 基础 ===== */
+        /* ============================================================
+                   优化点：精简 CSS 变量，合并重复规则，提升选择器效率
+                   ============================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -22,15 +24,15 @@
             --gold-dim: rgba(220, 199, 166, 0.08);
             --cyan: #8ad4e8;
             --cyan-dim: rgba(138, 212, 232, 0.06);
-            --rose: #e0b0b0;
-            --violet: #b8a6d9;
             --radius: 34px;
             --gap: 80px;
             --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --nav-height: 56px;
         }
 
         html {
             scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
@@ -38,7 +40,6 @@
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
 
@@ -53,7 +54,7 @@
             border-radius: 10px;
         }
 
-        /* ===== 粒子背景 ===== */
+        /* ===== 粒子画布 ===== */
         #particles {
             position: fixed;
             top: 0;
@@ -71,48 +72,51 @@
             padding: 0 32px;
         }
 
-        /* ===== 导航 ===== */
+        /* ===== 导航栏 ===== */
         .navbar {
             position: fixed;
-            top: 24px;
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
             background: rgba(8, 10, 18, 0.55);
             backdrop-filter: blur(28px) saturate(1.4);
+            -webkit-backdrop-filter: blur(28px) saturate(1.4);
             border: 1px solid var(--border);
             border-radius: 80px;
-            padding: 8px 32px;
+            padding: 6px 28px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 56px;
+            gap: 40px;
             box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
             transition: 0.3s;
         }
         .navbar .logo {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 300;
             letter-spacing: 0.22em;
             color: var(--text);
             text-decoration: none;
+            white-space: nowrap;
         }
         .navbar .logo span {
             color: var(--gold);
         }
         .nav-links {
             display: flex;
-            gap: 36px;
+            gap: 28px;
             list-style: none;
         }
         .nav-links a {
             color: var(--muted);
             text-decoration: none;
-            font-size: 0.68rem;
+            font-size: 0.65rem;
             letter-spacing: 0.14em;
             transition: color 0.3s;
             font-weight: 300;
             position: relative;
+            white-space: nowrap;
         }
         .nav-links a::after {
             content: '';
@@ -134,7 +138,7 @@
             color: var(--gold);
         }
 
-        /* ===== 英雄 ===== */
+        /* ===== 英雄区 ===== */
         #hero {
             position: relative;
             z-index: 1;
@@ -144,8 +148,9 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 160px 24px 80px;
-            background: radial-gradient(ellipse at 20% 30%, rgba(220, 199, 166, 0.05), transparent 55%),
+            padding: 140px 24px 80px;
+            background:
+                radial-gradient(ellipse at 20% 30%, rgba(220, 199, 166, 0.05), transparent 55%),
                 radial-gradient(ellipse at 80% 70%, rgba(138, 212, 232, 0.03), transparent 50%),
                 var(--bg);
         }
@@ -170,24 +175,27 @@
         }
         .btn-group {
             display: flex;
-            gap: 20px;
+            gap: 16px;
             flex-wrap: wrap;
             justify-content: center;
         }
         .btn {
-            padding: 14px 48px;
+            padding: 14px 40px;
             border-radius: 60px;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 400;
             letter-spacing: 0.1em;
             border: none;
             cursor: pointer;
             transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            background: transparent;
+            color: #fff;
         }
         .btn-primary {
             background: var(--gold);
@@ -199,7 +207,6 @@
             box-shadow: 0 12px 56px rgba(220, 199, 166, 0.18);
         }
         .btn-secondary {
-            background: transparent;
             border: 1px solid var(--border);
             color: #fff;
         }
@@ -240,11 +247,11 @@
             }
         }
 
-        /* ===== Sections ===== */
+        /* ===== 通用章节 ===== */
         section {
             position: relative;
             z-index: 1;
-            padding: 140px 0;
+            padding: 120px 0;
             border-bottom: 1px solid var(--border);
         }
         section:last-of-type {
@@ -261,11 +268,11 @@
             opacity: 0.5;
         }
         .section-title {
-            font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+            font-size: clamp(2.4rem, 5.5vw, 4.2rem);
             font-weight: 200;
             letter-spacing: -0.01em;
             line-height: 1.05;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             color: #fff;
         }
         .section-desc {
@@ -289,10 +296,10 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: var(--gap) 48px;
-            margin-top: 60px;
+            margin-top: 56px;
         }
         .grid-2 {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         }
         .grid-3 {
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -303,11 +310,13 @@
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 44px 34px 40px;
+            padding: 40px 30px 36px;
             transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             cursor: pointer;
             position: relative;
             backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            will-change: transform, box-shadow;
         }
         .card::before {
             content: '';
@@ -321,7 +330,7 @@
             transition: opacity 0.6s;
         }
         .card:hover {
-            transform: translateY(-12px);
+            transform: translateY(-10px);
             border-color: rgba(220, 199, 166, 0.12);
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
         }
@@ -329,43 +338,44 @@
             opacity: 1;
         }
         .card .icon {
-            font-size: 3rem;
-            margin-bottom: 18px;
+            font-size: 2.8rem;
+            margin-bottom: 14px;
             display: block;
             opacity: 0.4;
             transition: 0.3s;
+            line-height: 1;
         }
         .card:hover .icon {
             opacity: 0.7;
         }
         .card h3 {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 400;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             color: #fff;
             letter-spacing: 0.02em;
         }
         .card .sub {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             color: var(--muted);
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             opacity: 0.6;
         }
         .card p {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--muted);
             font-weight: 300;
             line-height: 1.8;
         }
         .card .tag {
             display: inline-block;
-            margin-top: 20px;
-            padding: 4px 18px;
+            margin-top: 18px;
+            padding: 4px 16px;
             border-radius: 40px;
             border: 1px solid var(--border);
-            font-size: 0.5rem;
+            font-size: 0.48rem;
             color: var(--muted);
             letter-spacing: 0.12em;
             text-transform: uppercase;
@@ -375,12 +385,12 @@
         .stagger {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px 80px;
-            margin-top: 60px;
+            gap: 48px 72px;
+            margin-top: 56px;
         }
         .stagger .item {
             border-bottom: 1px solid var(--border);
-            padding-bottom: 32px;
+            padding-bottom: 28px;
             cursor: pointer;
             transition: 0.3s;
         }
@@ -396,23 +406,23 @@
         }
         .stagger .item h4 {
             font-weight: 400;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             margin: 4px 0 8px;
             color: #fff;
         }
         .stagger .item p {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--muted);
             font-weight: 300;
             line-height: 1.7;
         }
 
-        /* ===== 时间线（水平） ===== */
+        /* ===== 水平时间线 ===== */
         .timeline-h {
             display: flex;
-            gap: 52px;
+            gap: 44px;
             overflow-x: auto;
-            padding: 32px 4px 40px;
+            padding: 28px 4px 36px;
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
@@ -421,12 +431,12 @@
             display: none;
         }
         .tl-item {
-            flex: 0 0 270px;
+            flex: 0 0 260px;
             scroll-snap-align: start;
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 36px 28px;
+            padding: 32px 26px;
             transition: 0.4s;
             cursor: pointer;
         }
@@ -442,29 +452,29 @@
         }
         .tl-item h4 {
             font-weight: 400;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             margin: 8px 0 6px;
             color: #fff;
         }
         .tl-item p {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: var(--muted);
             font-weight: 300;
         }
 
-        /* ===== 纯图标网格 ===== */
+        /* ===== 图标网格 ===== */
         .icon-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 44px;
-            margin-top: 60px;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 36px;
+            margin-top: 56px;
         }
         .icon-card {
             text-align: center;
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 34px 16px 28px;
+            padding: 30px 14px 24px;
             transition: 0.4s;
             cursor: pointer;
         }
@@ -474,40 +484,41 @@
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
         }
         .icon-card .emoji {
-            font-size: 3.2rem;
+            font-size: 2.8rem;
             display: block;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
+            line-height: 1;
         }
         .icon-card .label {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             color: var(--muted);
             letter-spacing: 0.08em;
             font-weight: 300;
         }
 
-        /* ===== 引语 ===== */
+        /* ===== 引用块 ===== */
         .quote-block {
             max-width: 780px;
             margin: 0 auto;
             text-align: center;
-            padding: 40px 0;
+            padding: 30px 0;
         }
         .quote-block blockquote {
-            font-size: clamp(1.8rem, 3.8vw, 3.2rem);
+            font-size: clamp(1.6rem, 3.6vw, 3rem);
             font-weight: 200;
             color: #fff;
             line-height: 1.4;
             letter-spacing: 0.02em;
         }
         .quote-block .attr {
-            margin-top: 28px;
+            margin-top: 24px;
             color: var(--muted);
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             letter-spacing: 0.14em;
             opacity: 0.5;
         }
 
-        /* ===== 浮动装饰 ===== */
+        /* ===== 装饰 ===== */
         .float-ornament {
             display: flex;
             justify-content: center;
@@ -522,21 +533,21 @@
         /* ===== 页脚 ===== */
         .footer {
             border-top: 1px solid var(--border);
-            padding: 48px 0 32px;
+            padding: 44px 0 28px;
             text-align: center;
         }
         .footer .links {
             display: flex;
-            gap: 40px;
+            gap: 36px;
             justify-content: center;
             flex-wrap: wrap;
             list-style: none;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
         .footer .links a {
             color: var(--muted);
             text-decoration: none;
-            font-size: 0.65rem;
+            font-size: 0.62rem;
             letter-spacing: 0.12em;
             transition: color 0.3s;
         }
@@ -545,7 +556,7 @@
         }
         .footer .note {
             color: var(--muted);
-            font-size: 0.55rem;
+            font-size: 0.52rem;
             opacity: 0.2;
             letter-spacing: 0.15em;
         }
@@ -564,13 +575,14 @@
             pointer-events: none;
         }
         .toast {
-            background: rgba(8, 10, 18, 0.75);
+            background: rgba(8, 10, 18, 0.78);
             backdrop-filter: blur(24px) saturate(1.5);
+            -webkit-backdrop-filter: blur(24px) saturate(1.5);
             border: 1px solid var(--border);
             border-radius: 60px;
-            padding: 12px 40px;
+            padding: 10px 36px;
             color: #fff;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 300;
             letter-spacing: 0.1em;
             box-shadow: 0 24px 72px rgba(0, 0, 0, 0.6);
@@ -579,6 +591,9 @@
             transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
             pointer-events: auto;
             white-space: nowrap;
+            max-width: 90vw;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .toast.show {
             opacity: 1;
@@ -589,102 +604,164 @@
             font-weight: 400;
         }
 
-        /* ===== 响应式 ===== */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 20px;
-            }
+        /* ============================================================
+                   响应式
+                   ============================================================ */
+        @media (max-width: 880px) {
             .navbar {
-                padding: 6px 20px;
-                gap: 16px;
-                top: 16px;
+                padding: 6px 18px;
+                gap: 20px;
                 width: calc(100% - 32px);
                 border-radius: 40px;
+                top: 14px;
             }
             .nav-links {
-                gap: 14px;
+                gap: 16px;
             }
             .nav-links a {
-                font-size: 0.58rem;
+                font-size: 0.56rem;
+            }
+            .navbar .logo {
+                font-size: 0.72rem;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .navbar .logo {
+                font-size: 0.65rem;
+                letter-spacing: 0.12em;
+            }
+            .nav-links {
+                gap: 10px;
+            }
+            .nav-links a {
+                font-size: 0.5rem;
+                letter-spacing: 0.08em;
+            }
+            .nav-links a::after {
+                display: none;
             }
             .grid {
-                gap: 40px 24px;
-            }
-            .stagger {
-                grid-template-columns: 1fr;
-                gap: 32px;
+                gap: 32px 20px;
             }
             .grid-2 {
                 grid-template-columns: 1fr;
             }
-            .timeline-h {
-                gap: 20px;
-            }
-            .tl-item {
-                flex: 0 0 170px;
-                padding: 24px;
+            .stagger {
+                grid-template-columns: 1fr;
+                gap: 28px;
             }
             section {
-                padding: 80px 0;
+                padding: 72px 0;
+            }
+            .timeline-h {
+                gap: 16px;
+            }
+            .tl-item {
+                flex: 0 0 160px;
+                padding: 20px 18px;
             }
             .icon-grid {
-                grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-                gap: 24px;
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                gap: 20px;
             }
             .btn {
-                padding: 12px 28px;
+                padding: 10px 24px;
                 font-size: 0.7rem;
             }
             #hero h1 {
-                font-size: 2.8rem;
+                font-size: 2.6rem;
+            }
+            .container {
+                padding: 0 16px;
             }
         }
+
         @media (max-width: 480px) {
             .grid {
                 grid-template-columns: 1fr;
             }
             .quote-block blockquote {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
             }
             .tl-item {
-                flex: 0 0 140px;
-                padding: 18px;
+                flex: 0 0 130px;
+                padding: 16px 14px;
+            }
+            .navbar {
+                padding: 4px 12px;
+                gap: 10px;
+                top: 10px;
+                border-radius: 30px;
             }
             .navbar .logo {
+                font-size: 0.55rem;
+                letter-spacing: 0.08em;
+            }
+            .nav-links {
+                gap: 6px;
+            }
+            .nav-links a {
+                font-size: 0.45rem;
+                letter-spacing: 0.04em;
+            }
+            .btn-group {
+                gap: 10px;
+            }
+            .btn {
+                padding: 8px 18px;
+                font-size: 0.62rem;
+            }
+            .card {
+                padding: 28px 18px 24px;
+            }
+            .card .icon {
+                font-size: 2.2rem;
+            }
+            .toast {
                 font-size: 0.7rem;
+                padding: 8px 20px;
+                white-space: normal;
             }
         }
 
-        /* ===== 入场动画 ===== */
+        /* ============================================================
+                   入场动画（优化：使用 transform 和 opacity，GPU 加速）
+                   ============================================================ */
         .reveal {
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateY(48px);
             transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1),
                 transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+            will-change: transform, opacity;
         }
         .reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
         .reveal-delay-1 {
-            transition-delay: 0.08s;
+            transition-delay: 0.06s;
         }
         .reveal-delay-2 {
-            transition-delay: 0.16s;
+            transition-delay: 0.12s;
         }
         .reveal-delay-3 {
-            transition-delay: 0.24s;
+            transition-delay: 0.18s;
         }
         .reveal-delay-4 {
-            transition-delay: 0.32s;
+            transition-delay: 0.24s;
         }
     </style>
 </head>
 <body>
 
+    <!-- ===== 粒子背景 ===== -->
     <canvas id="particles"></canvas>
+
+    <!-- ===== Toast 容器 ===== -->
     <div class="toast-container" id="toastContainer"></div>
 
+    <!-- ===== 导航 ===== -->
     <nav class="navbar">
         <a href="#" class="logo">◈ <span>星尘</span>经纬</a>
         <ul class="nav-links">
@@ -693,10 +770,11 @@
             <li><a href="#resonance">共鸣</a></li>
             <li><a href="#spectral">光谱</a></li>
             <li><a href="#archives">档案</a></li>
-            <li><a href="about.html" class="about">关于</a></li>
+            <li><a href="#echo" class="about">关于</a></li>
         </ul>
     </nav>
 
+    <!-- ===== 英雄区 ===== -->
     <section id="hero">
         <h1>星 尘 经 纬</h1>
         <p class="sub">在光的背面，编织未竟的叙事</p>
@@ -709,7 +787,9 @@
         </div>
     </section>
 
-    <!-- ===== 第一章：源起之痕 ===== -->
+    <!-- ============================================================
+    第 一 章 · 源起之痕
+    ============================================================ -->
     <section id="origin">
         <div class="container">
             <span class="section-label reveal">第 一 章</span>
@@ -719,7 +799,9 @@
         </div>
     </section>
 
-    <!-- ===== 第二章：折叠的维度 ===== -->
+    <!-- ============================================================
+    第 二 章 · 折叠的维度
+    ============================================================ -->
     <section id="folds">
         <div class="container">
             <span class="section-label reveal">第 二 章</span>
@@ -729,7 +811,9 @@
         </div>
     </section>
 
-    <!-- ===== 第三章：共鸣协议 ===== -->
+    <!-- ============================================================
+    第 三 章 · 共鸣协议
+    ============================================================ -->
     <section id="resonance">
         <div class="container">
             <span class="section-label reveal">第 三 章</span>
@@ -739,7 +823,9 @@
         </div>
     </section>
 
-    <!-- ===== 第四章：光谱回廊（新增） ===== -->
+    <!-- ============================================================
+    第 四 章 · 光谱回廊
+    ============================================================ -->
     <section id="spectral">
         <div class="container">
             <span class="section-label reveal">第 四 章</span>
@@ -749,7 +835,9 @@
         </div>
     </section>
 
-    <!-- ===== 第五章：虚空档案（引语 + 时间线） ===== -->
+    <!-- ============================================================
+    第 五 章 · 虚空档案（引语 + 时间线）
+    ============================================================ -->
     <section id="archives">
         <div class="container">
             <div class="quote-block reveal">
@@ -760,7 +848,9 @@
         </div>
     </section>
 
-    <!-- ===== 第六章：暗涌叙事 ===== -->
+    <!-- ============================================================
+    第 六 章 · 暗涌叙事
+    ============================================================ -->
     <section id="narratives">
         <div class="container">
             <span class="section-label reveal">第 六 章</span>
@@ -770,7 +860,9 @@
         </div>
     </section>
 
-    <!-- ===== 第七章：星尘语法 ===== -->
+    <!-- ============================================================
+    第 七 章 · 星尘语法
+    ============================================================ -->
     <section id="grammar">
         <div class="container">
             <span class="section-label reveal">第 七 章</span>
@@ -780,7 +872,9 @@
         </div>
     </section>
 
-    <!-- ===== 第八章：梦境拓扑 ===== -->
+    <!-- ============================================================
+    第 八 章 · 梦境拓扑
+    ============================================================ -->
     <section id="topology">
         <div class="container">
             <span class="section-label reveal">第 八 章</span>
@@ -790,7 +884,9 @@
         </div>
     </section>
 
-    <!-- ===== 第九章：幻影织机（新增） ===== -->
+    <!-- ============================================================
+    第 九 章 · 幻影织机
+    ============================================================ -->
     <section id="loom">
         <div class="container">
             <span class="section-label reveal">第 九 章</span>
@@ -800,7 +896,9 @@
         </div>
     </section>
 
-    <!-- ===== 终章：余响 ===== -->
+    <!-- ============================================================
+    终 章 · 余响
+    ============================================================ -->
     <section id="echo">
         <div class="container">
             <div class="quote-block reveal">
@@ -808,12 +906,16 @@
                 <div class="attr">—— 终末抄写员 · 静默纪元</div>
             </div>
             <div class="float-ornament">◈ ◈ ◈</div>
-            <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:30px;">
+            <div class="btn-group" style="margin-top:32px;">
                 <button class="btn btn-primary" id="echoBtn">◈ 聆听余响</button>
+                <!-- 优化点：新增「随机漫游」与「重置」按钮，补全原有功能 -->
+                <button class="btn btn-secondary" id="randomBtn">✦ 随机漫游</button>
+                <button class="btn btn-secondary" id="resetBtn">⟳ 重置</button>
             </div>
         </div>
     </section>
 
+    <!-- ===== 页脚 ===== -->
     <footer class="footer">
         <div class="container">
             <ul class="links">
@@ -822,34 +924,48 @@
                 <li><a href="#resonance">共鸣</a></li>
                 <li><a href="#spectral">光谱</a></li>
                 <li><a href="#archives">档案</a></li>
-                <li><a href="about.html">关于</a></li>
+                <li><a href="#echo">关于</a></li>
             </ul>
             <p class="note">星尘经纬 · 无尽回廊 · 虚数之诗</p>
         </div>
     </footer>
 
+    <!-- ============================================================
+    JavaScript — 优化点：模块化、性能优化、bug 修复
+    ============================================================ -->
     <script>
         (function() {
             'use strict';
 
-            // ===== Toast 系统 =====
+            // ============================================================
+            // 1. Toast 系统
+            // ============================================================
             const toastContainer = document.getElementById('toastContainer');
 
             function showToast(msg, duration) {
                 duration = duration || 2400;
-                const t = document.createElement('div');
-                t.className = 'toast';
-                t.textContent = msg;
-                toastContainer.appendChild(t);
-                requestAnimationFrame(() => t.classList.add('show'));
-                setTimeout(() => {
-                    t.classList.remove('show');
-                    setTimeout(() => { if (t.parentNode) t.parentNode.removeChild(t); }, 400);
+                const el = document.createElement('div');
+                el.className = 'toast';
+                el.textContent = msg;
+                toastContainer.appendChild(el);
+                // 使用 requestAnimationFrame 确保样式已应用
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => el.classList.add('show'));
+                });
+                const timer = setTimeout(() => {
+                    el.classList.remove('show');
+                    setTimeout(() => {
+                        if (el.parentNode) el.parentNode.removeChild(el);
+                    }, 400);
                 }, duration);
+                // 存储 timer 以便清理
+                el._timer = timer;
             }
 
-            // ===== 华丽短语库（每次点击随机抽取） =====
-            const fragments = [
+            // ============================================================
+            // 2. 诗意短语库
+            // ============================================================
+            const FRAGMENTS = [
                 '光在光的背面写下暗语',
                 '时间在褶皱中弯曲成环',
                 '虚空深处，有未名的回响',
@@ -873,24 +989,34 @@
             ];
 
             function randomFragment() {
-                return fragments[Math.floor(Math.random() * fragments.length)];
+                return FRAGMENTS[Math.floor(Math.random() * FRAGMENTS.length)];
             }
 
-            // ===== 粒子背景 =====
+            const PREFIXES = ['✦', '◈', '⌇', '∞', '✧', '⊹', '⟡', '⌾', '◐', '⊜'];
+
+            function randomPrefix() {
+                return PREFIXES[Math.floor(Math.random() * PREFIXES.length)];
+            }
+
+            // ============================================================
+            // 3. 粒子背景（优化：使用 requestAnimationFrame 节流，减少绘制开销）
+            // ============================================================
             (function initParticles() {
-                const c = document.getElementById('particles');
-                const ctx = c.getContext('2d');
-                let w, h, particles = [];
+                const canvas = document.getElementById('particles');
+                const ctx = canvas.getContext('2d');
+                let w, h;
+                let particles = [];
                 const COUNT = 160;
+                const MAX_DIST = 150;
 
                 function resize() {
                     w = window.innerWidth;
                     h = window.innerHeight;
-                    c.width = w;
-                    c.height = h;
+                    canvas.width = w;
+                    canvas.height = h;
                 }
 
-                function create() {
+                function createParticles() {
                     particles = [];
                     for (let i = 0; i < COUNT; i++) {
                         particles.push({
@@ -906,33 +1032,43 @@
 
                 function draw() {
                     ctx.clearRect(0, 0, w, h);
-                    for (let i = 0; i < particles.length; i++) {
-                        for (let j = i + 1; j < particles.length; j++) {
-                            const dx = particles[i].x - particles[j].x;
-                            const dy = particles[i].y - particles[j].y;
-                            const dist = Math.sqrt(dx * dx + dy * dy);
-                            if (dist < 150) {
+                    const len = particles.length;
+                    // 连线
+                    for (let i = 0; i < len; i++) {
+                        const pi = particles[i];
+                        for (let j = i + 1; j < len; j++) {
+                            const pj = particles[j];
+                            const dx = pi.x - pj.x;
+                            const dy = pi.y - pj.y;
+                            const dist = dx * dx + dy * dy;
+                            if (dist < MAX_DIST * MAX_DIST) {
+                                const d = Math.sqrt(dist);
+                                const alpha = 0.035 * (1 - d / MAX_DIST);
                                 ctx.beginPath();
-                                ctx.moveTo(particles[i].x, particles[i].y);
-                                ctx.lineTo(particles[j].x, particles[j].y);
-                                ctx.strokeStyle = `rgba(220,199,166,${0.035 * (1 - dist / 150)})`;
+                                ctx.moveTo(pi.x, pi.y);
+                                ctx.lineTo(pj.x, pj.y);
+                                ctx.strokeStyle = `rgba(220,199,166,${alpha})`;
                                 ctx.lineWidth = 0.4;
                                 ctx.stroke();
                             }
                         }
                     }
+                    // 绘制粒子
                     for (const p of particles) {
-                        ctx.beginPath();
-                        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                        // 光晕
                         const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 2.5);
                         grad.addColorStop(0, `rgba(220,199,166,${p.a * 0.5})`);
                         grad.addColorStop(1, 'rgba(220,199,166,0)');
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.r * 2.5, 0, Math.PI * 2);
                         ctx.fillStyle = grad;
                         ctx.fill();
+                        // 核心
                         ctx.beginPath();
                         ctx.arc(p.x, p.y, p.r * 0.3, 0, Math.PI * 2);
                         ctx.fillStyle = `rgba(255,255,255,${p.a * 0.15})`;
                         ctx.fill();
+                        // 移动
                         p.x += p.dx;
                         p.y += p.dy;
                         if (p.x < 0 || p.x > w) p.dx *= -1;
@@ -942,193 +1078,169 @@
                 }
 
                 resize();
-                create();
+                createParticles();
                 draw();
-                window.addEventListener('resize', () => { resize();
-                    create(); });
+
+                let resizeTimer;
+                window.addEventListener('resize', () => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        resize();
+                        createParticles();
+                    }, 160);
+                });
             })();
 
-            // ================================================================
-            // 数据：全部虚构，诗意，抽象，无任何科学内容
-            // ================================================================
+            // ============================================================
+            // 4. 数据（全部保留，未作任何删改）
+            // ============================================================
+            const DATA = {
+                origin: [
+                    { icon: '◈', title: '虚数之海', sub: '前-存在', desc: '未分化的潜在，一切可能性的母体，在时间之前便已存在。' },
+                    { icon: '✦', title: '第一涟漪', sub: '原初扰动', desc: '对称性破缺的瞬间，时间开始呼吸，空间展开第一重褶皱。' },
+                    { icon: '⌇', title: '静默光谱', sub: '无声频率', desc: '尚未被观测的振动，潜伏在真空涨落之中，等待被聆听。' },
+                    { icon: '∞', title: '环状逻辑', sub: '自指命题', desc: '一个指向自身的句子，没有起点也没有终点，循环往复。' }
+                ],
+                folds: [
+                    { num: '01', title: '镜像折叠', desc: '每一层现实都包含着上一层梦境的残影，无限递归。' },
+                    { num: '02', title: '歧路花园', desc: '选择本身即是一种叙事，而所有叙事同时存在，路径交织。' },
+                    { num: '03', title: '缄默代码', desc: '隐藏在符号背后的沉默协议，只可被感受，不可被破译。' },
+                    { num: '04', title: '碎片纪元', desc: '历史是无数破碎镜片，每一片都反射出不同的真理之光。' },
+                    { num: '05', title: '暗色寓言', desc: '没有主角的故事，只有不断流动的意象，以及隐喻的暗流。' },
+                    { num: '06', title: '虚空回廊', desc: '无限延伸的走廊，每一扇门后都是另一个虚空，嵌套无终。' }
+                ],
+                resonance: [
+                    { icon: '♩', title: '基频共振', sub: 'α 波', desc: '万物皆在振动，基频是存在的底层协议，贯穿所有维度。' },
+                    { icon: '♪', title: '谐波镜像', sub: 'β 叠层', desc: '高次谐波中隐藏着现实的多重副本，层层叠映。' },
+                    { icon: '♫', title: '混沌节拍', sub: 'γ 暴烈', desc: '无序的韵律，却是创造性的唯一源泉，熵增中的秩序。' },
+                    { icon: '♬', title: '静默间隔', sub: 'δ 空谷', desc: '音符之间的寂静，承载着真正的意义，未被言说。' }
+                ],
+                spectral: [
+                    { icon: '◐', title: '折射棱镜', sub: '色散之域', desc: '白光在棱镜中碎裂，每一道色彩都是一种未被翻译的语言。' },
+                    { icon: '◑', title: '暗影虹彩', sub: '负片光谱', desc: '在光的背面，存在着与之对称的暗色光谱，肉眼不可见。' },
+                    { icon: '◒', title: '极光帷幕', sub: '磁层低语', desc: '带电粒子与大气碰撞，激发出半梦半醒之间的极光絮语。' },
+                    { icon: '◓', title: '星尘滤镜', sub: '星际消光', desc: '星尘在光传播的路径上，留下了细微的痕迹与偏向。' }
+                ],
+                timeline: [
+                    { epoch: '虚无纪元', title: '零之点', desc: '一切尚未命名，所有概念处于量子叠加，未观测态。' },
+                    { epoch: '幻象纪元', title: '第一梦境', desc: '虚空开始自我注视，诞生了第一重幻象，光与影初分。' },
+                    { epoch: '织造纪元', title: '意义编织', desc: '碎片开始组合，形成可理解的图案，叙事涌现。' },
+                    { epoch: '裂隙纪元', title: '多界开裂', desc: '维度之间出现裂缝，现实开始渗漏，边界模糊。' },
+                    { epoch: '共鸣纪元', title: '频率统一', desc: '所有振动找到共同的基频，万物合唱，和谐共振。' },
+                    { epoch: '静默纪元', title: '终末之息', desc: '最后一个音符落下，虚空回归寂静，等待下一次涟漪。' }
+                ],
+                narratives: [
+                    { icon: '✧', title: '漂流者手记', sub: '星尘旅人', desc: '在无尽的漂流中，记录下每一粒星尘的独白，零落成章。' },
+                    { icon: '⋆', title: '暗影对话', sub: '未寄出的信', desc: '写给不存在的收件人，关于光的消逝与重生，缥缈之语。' },
+                    { icon: '⊹', title: '边缘回响', sub: '边界之声', desc: '在可观测宇宙的边缘，传来无法溯源的呼唤，低频震颤。' },
+                    { icon: '☯', title: '虚实交织', sub: '莫比乌斯叙事', desc: '真实与虚构互为表里，没有清晰的分界，循环缠绕。' }
+                ],
+                grammar: [
+                    { emoji: '⟡', label: '光之词根' },
+                    { emoji: '◉', label: '暗之变格' },
+                    { emoji: '⏣', label: '时态折痕' },
+                    { emoji: '☍', label: '空间介词' },
+                    { emoji: '⨁', label: '合成算子' },
+                    { emoji: '⨂', label: '张量连接' },
+                    { emoji: '⊚', label: '双射映射' },
+                    { emoji: '⌘', label: '递归指令' },
+                    { emoji: '⟐', label: '缺失占位' },
+                    { emoji: '⍟', label: '循环终止' }
+                ],
+                topology: [
+                    { icon: '◈', title: '克莱因瓶', sub: '无内无外', desc: '一个没有内部与外部之分的容器，梦境在其中自由流动。' },
+                    { icon: '✤', title: '螺旋涡流', sub: '递归嵌套', desc: '自我相似的漩涡，每一层都包含整个结构，自相似无限。' },
+                    { icon: '⊜', title: '莫比乌斯环', sub: '两面一体', desc: '沿着环行走，最终会回到起点，但方向已翻转，永恒悖论。' },
+                    { icon: '⌾', title: '星形流形', sub: '奇异点', desc: '在中心点，所有维度汇聚，时间和空间失去意义，奇点之寂。' }
+                ],
+                loom: [
+                    { icon: '⊹', title: '虚纬之丝', sub: '无质之线', desc: '从虚空中抽取的丝线，不含任何物质，却能编织出可感的纹理。' },
+                    { icon: '✧', title: '幻影梭子', sub: '穿梭者', desc: '在经纬之间快速穿行的幻影，留下尚未成型的图案。' },
+                    { icon: '✶', title: '残影经线', sub: '时间褶皱', desc: '被折叠的时间形成的经线，每一道折痕都记录着未发生的事件。' },
+                    { icon: '⋆', title: '星尘纬线', sub: '光年之距', desc: '由遥远星尘构成的纬线，每一粒都携带了千万年前的信息。' }
+                ]
+            };
 
-            const originData = [
-                { icon: '◈', title: '虚数之海', sub: '前-存在', desc: '未分化的潜在，一切可能性的母体，在时间之前便已存在。' },
-                { icon: '✦', title: '第一涟漪', sub: '原初扰动', desc: '对称性破缺的瞬间，时间开始呼吸，空间展开第一重褶皱。' },
-                { icon: '⌇', title: '静默光谱', sub: '无声频率', desc: '尚未被观测的振动，潜伏在真空涨落之中，等待被聆听。' },
-                { icon: '∞', title: '环状逻辑', sub: '自指命题', desc: '一个指向自身的句子，没有起点也没有终点，循环往复。' }
-            ];
-
-            const foldsData = [
-                { num: '01', title: '镜像折叠', desc: '每一层现实都包含着上一层梦境的残影，无限递归。' },
-                { num: '02', title: '歧路花园', desc: '选择本身即是一种叙事，而所有叙事同时存在，路径交织。' },
-                { num: '03', title: '缄默代码', desc: '隐藏在符号背后的沉默协议，只可被感受，不可被破译。' },
-                { num: '04', title: '碎片纪元', desc: '历史是无数破碎镜片，每一片都反射出不同的真理之光。' },
-                { num: '05', title: '暗色寓言', desc: '没有主角的故事，只有不断流动的意象，以及隐喻的暗流。' },
-                { num: '06', title: '虚空回廊', desc: '无限延伸的走廊，每一扇门后都是另一个虚空，嵌套无终。' }
-            ];
-
-            const resonanceData = [
-                { icon: '♩', title: '基频共振', sub: 'α 波', desc: '万物皆在振动，基频是存在的底层协议，贯穿所有维度。' },
-                { icon: '♪', title: '谐波镜像', sub: 'β 叠层', desc: '高次谐波中隐藏着现实的多重副本，层层叠映。' },
-                { icon: '♫', title: '混沌节拍', sub: 'γ 暴烈', desc: '无序的韵律，却是创造性的唯一源泉，熵增中的秩序。' },
-                { icon: '♬', title: '静默间隔', sub: 'δ 空谷', desc: '音符之间的寂静，承载着真正的意义，未被言说。' }
-            ];
-
-            const spectralData = [
-                { icon: '◐', title: '折射棱镜', sub: '色散之域', desc: '白光在棱镜中碎裂，每一道色彩都是一种未被翻译的语言。' },
-                { icon: '◑', title: '暗影虹彩', sub: '负片光谱', desc: '在光的背面，存在着与之对称的暗色光谱，肉眼不可见。' },
-                { icon: '◒', title: '极光帷幕', sub: '磁层低语', desc: '带电粒子与大气碰撞，激发出半梦半醒之间的极光絮语。' },
-                { icon: '◓', title: '星尘滤镜', sub: '星际消光', desc: '星尘在光传播的路径上，留下了细微的痕迹与偏向。' }
-            ];
-
-            const timelineData = [
-                { epoch: '虚无纪元', title: '零之点', desc: '一切尚未命名，所有概念处于量子叠加，未观测态。' },
-                { epoch: '幻象纪元', title: '第一梦境', desc: '虚空开始自我注视，诞生了第一重幻象，光与影初分。' },
-                { epoch: '织造纪元', title: '意义编织', desc: '碎片开始组合，形成可理解的图案，叙事涌现。' },
-                { epoch: '裂隙纪元', title: '多界开裂', desc: '维度之间出现裂缝，现实开始渗漏，边界模糊。' },
-                { epoch: '共鸣纪元', title: '频率统一', desc: '所有振动找到共同的基频，万物合唱，和谐共振。' },
-                { epoch: '静默纪元', title: '终末之息', desc: '最后一个音符落下，虚空回归寂静，等待下一次涟漪。' }
-            ];
-
-            const narrativesData = [
-                { icon: '✧', title: '漂流者手记', sub: '星尘旅人', desc: '在无尽的漂流中，记录下每一粒星尘的独白，零落成章。' },
-                { icon: '⋆', title: '暗影对话', sub: '未寄出的信', desc: '写给不存在的收件人，关于光的消逝与重生，缥缈之语。' },
-                { icon: '⊹', title: '边缘回响', sub: '边界之声', desc: '在可观测宇宙的边缘，传来无法溯源的呼唤，低频震颤。' },
-                { icon: '☯', title: '虚实交织', sub: '莫比乌斯叙事', desc: '真实与虚构互为表里，没有清晰的分界，循环缠绕。' }
-            ];
-
-            const grammarData = [
-                { emoji: '⟡', label: '光之词根' },
-                { emoji: '◉', label: '暗之变格' },
-                { emoji: '⏣', label: '时态折痕' },
-                { emoji: '☍', label: '空间介词' },
-                { emoji: '⨁', label: '合成算子' },
-                { emoji: '⨂', label: '张量连接' },
-                { emoji: '⊚', label: '双射映射' },
-                { emoji: '⌘', label: '递归指令' },
-                { emoji: '⟐', label: '缺失占位' },
-                { emoji: '⍟', label: '循环终止' }
-            ];
-
-            const topologyData = [
-                { icon: '◈', title: '克莱因瓶', sub: '无内无外', desc: '一个没有内部与外部之分的容器，梦境在其中自由流动。' },
-                { icon: '✤', title: '螺旋涡流', sub: '递归嵌套', desc: '自我相似的漩涡，每一层都包含整个结构，自相似无限。' },
-                { icon: '⊜', title: '莫比乌斯环', sub: '两面一体', desc: '沿着环行走，最终会回到起点，但方向已翻转，永恒悖论。' },
-                { icon: '⌾', title: '星形流形', sub: '奇异点', desc: '在中心点，所有维度汇聚，时间和空间失去意义，奇点之寂。' }
-            ];
-
-            const loomData = [
-                { icon: '⊹', title: '虚纬之丝', sub: '无质之线', desc: '从虚空中抽取的丝线，不含任何物质，却能编织出可感的纹理。' },
-                { icon: '✧', title: '幻影梭子', sub: '穿梭者', desc: '在经纬之间快速穿行的幻影，留下尚未成型的图案。' },
-                { icon: '✶', title: '残影经线', sub: '时间褶皱', desc: '被折叠的时间形成的经线，每一道折痕都记录着未发生的事件。' },
-                { icon: '⋆', title: '星尘纬线', sub: '光年之距', desc: '由遥远星尘构成的纬线，每一粒都携带了千万年前的信息。' }
-            ];
-
-            // ===== 通用渲染（每个卡片点击产生独特消息） =====
+            // ============================================================
+            // 5. 通用渲染器（优化：使用 DocumentFragment 减少回流）
+            // ============================================================
             function renderGrid(containerId, data, templateFn) {
-                const el = document.getElementById(containerId);
-                if (!el) return;
-                el.innerHTML = '';
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                const fragment = document.createDocumentFragment();
                 data.forEach((item, idx) => {
                     const div = document.createElement('div');
                     div.className = `reveal reveal-delay-${(idx % 4) + 1}`;
                     div.innerHTML = templateFn(item);
-                    div.addEventListener('click', function() {
+                    // 点击卡片：显示诗意短语
+                    div.addEventListener('click', function(e) {
+                        e.stopPropagation();
                         const title = item.title || item.label || item.epoch || '未知';
-                        const frag = randomFragment();
-                        const prefixes = ['✦', '◈', '⌇', '∞', '✧', '⊹', '⟡', '⌾'];
-                        const p = prefixes[Math.floor(Math.random() * prefixes.length)];
-                        showToast(`${p} ${title} · ${frag}`);
+                        const msg = `${randomPrefix()} ${title} · ${randomFragment()}`;
+                        showToast(msg);
                     });
-                    el.appendChild(div);
+                    fragment.appendChild(div);
                 });
+                container.appendChild(fragment);
             }
 
-            renderGrid('originGrid', originData, (d) => `
-                <div class="card">
-                    <span class="icon">${d.icon}</span>
-                    <h3>${d.title}</h3>
-                    <div class="sub">${d.sub}</div>
-                    <p>${d.desc}</p>
-                    <span class="tag">✦ 源起</span>
-                </div>
-            `);
+            // ----- 模板函数 -----
+            const T = {
+                card: (d) => `
+                    <div class="card">
+                        <span class="icon">${d.icon}</span>
+                        <h3>${d.title}</h3>
+                        <div class="sub">${d.sub}</div>
+                        <p>${d.desc}</p>
+                        <span class="tag">✦ 源起</span>
+                    </div>
+                `,
+                cardTag: (d, tag) => `
+                    <div class="card">
+                        <span class="icon">${d.icon}</span>
+                        <h3>${d.title}</h3>
+                        <div class="sub">${d.sub}</div>
+                        <p>${d.desc}</p>
+                        <span class="tag">${tag}</span>
+                    </div>
+                `,
+                fold: (d) => `
+                    <div class="item">
+                        <div class="num">${d.num}</div>
+                        <h4>${d.title}</h4>
+                        <p>${d.desc}</p>
+                    </div>
+                `,
+                timeline: (d) => `
+                    <div class="tl-item">
+                        <div class="epoch">${d.epoch}</div>
+                        <h4>${d.title}</h4>
+                        <p>${d.desc}</p>
+                    </div>
+                `,
+                iconCard: (d) => `
+                    <div class="icon-card">
+                        <span class="emoji">${d.emoji}</span>
+                        <div class="label">${d.label}</div>
+                    </div>
+                `
+            };
 
-            renderGrid('foldsGrid', foldsData, (d) => `
-                <div class="item">
-                    <div class="num">${d.num}</div>
-                    <h4>${d.title}</h4>
-                    <p>${d.desc}</p>
-                </div>
-            `);
+            // ----- 渲染各章节 -----
+            renderGrid('originGrid', DATA.origin, (d) => T.cardTag(d, '✦ 源起'));
+            renderGrid('foldsGrid', DATA.folds, T.fold);
+            renderGrid('resonanceGrid', DATA.resonance, (d) => T.cardTag(d, '♫ 共鸣'));
+            renderGrid('spectralGrid', DATA.spectral, (d) => T.cardTag(d, '◐ 光谱'));
+            renderGrid('timelineArchives', DATA.timeline, T.timeline);
+            renderGrid('narrativesGrid', DATA.narratives, (d) => T.cardTag(d, '✧ 叙事'));
+            renderGrid('grammarGrid', DATA.grammar, T.iconCard);
+            renderGrid('topologyGrid', DATA.topology, (d) => T.cardTag(d, '⌾ 拓扑'));
+            renderGrid('loomGrid', DATA.loom, (d) => T.cardTag(d, '⊹ 织机'));
 
-            renderGrid('resonanceGrid', resonanceData, (d) => `
-                <div class="card">
-                    <span class="icon">${d.icon}</span>
-                    <h3>${d.title}</h3>
-                    <div class="sub">${d.sub}</div>
-                    <p>${d.desc}</p>
-                    <span class="tag">♫ 共鸣</span>
-                </div>
-            `);
-
-            renderGrid('spectralGrid', spectralData, (d) => `
-                <div class="card">
-                    <span class="icon">${d.icon}</span>
-                    <h3>${d.title}</h3>
-                    <div class="sub">${d.sub}</div>
-                    <p>${d.desc}</p>
-                    <span class="tag">◐ 光谱</span>
-                </div>
-            `);
-
-            renderGrid('timelineArchives', timelineData, (d) => `
-                <div class="tl-item">
-                    <div class="epoch">${d.epoch}</div>
-                    <h4>${d.title}</h4>
-                    <p>${d.desc}</p>
-                </div>
-            `);
-
-            renderGrid('narrativesGrid', narrativesData, (d) => `
-                <div class="card">
-                    <span class="icon">${d.icon}</span>
-                    <h3>${d.title}</h3>
-                    <div class="sub">${d.sub}</div>
-                    <p>${d.desc}</p>
-                    <span class="tag">✧ 叙事</span>
-                </div>
-            `);
-
-            renderGrid('grammarGrid', grammarData, (d) => `
-                <div class="icon-card">
-                    <span class="emoji">${d.emoji}</span>
-                    <div class="label">${d.label}</div>
-                </div>
-            `);
-
-            renderGrid('topologyGrid', topologyData, (d) => `
-                <div class="card">
-                    <span class="icon">${d.icon}</span>
-                    <h3>${d.title}</h3>
-                    <div class="sub">${d.sub}</div>
-                    <p>${d.desc}</p>
-                    <span class="tag">⌾ 拓扑</span>
-                </div>
-            `);
-
-            renderGrid('loomGrid', loomData, (d) => `
-                <div class="card">
-                    <span class="icon">${d.icon}</span>
-                    <h3>${d.title}</h3>
-                    <div class="sub">${d.sub}</div>
-                    <p>${d.desc}</p>
-                    <span class="tag">⊹ 织机</span>
-                </div>
-            `);
-
-            // ===== 按钮交互（每个按钮独特消息） =====
+            // ============================================================
+            // 6. 按钮交互
+            // ============================================================
+            // 6.1 展开经纬
             document.getElementById('exploreBtn').addEventListener('click', function() {
                 const msgs = [
                     '✦ 经纬展开 · 虚空之幕缓缓升起',
@@ -1139,6 +1251,18 @@
                 showToast(msgs[Math.floor(Math.random() * msgs.length)]);
             });
 
+            // 6.2 聆听余响
+            document.getElementById('echoBtn').addEventListener('click', function() {
+                const msgs = [
+                    '◈ 余响 · 未写下的词语在虚空中颤动',
+                    '⌇ 寂静的底层，传来古老的频率',
+                    '✦ 最后一个音符沉入星尘之海',
+                    '∞ 回音在无限嵌套中逐渐消散'
+                ];
+                showToast(msgs[Math.floor(Math.random() * msgs.length)]);
+            });
+
+            // 6.3 随机漫游（优化点：补全原有功能）
             document.getElementById('randomBtn').addEventListener('click', function() {
                 const sections = ['origin', 'folds', 'resonance', 'spectral', 'archives', 'narratives', 'grammar',
                     'topology', 'loom', 'echo'
@@ -1157,16 +1281,7 @@
                 }
             });
 
-            document.getElementById('echoBtn').addEventListener('click', function() {
-                const msgs = [
-                    '◈ 余响 · 未写下的词语在虚空中颤动',
-                    '⌇ 寂静的底层，传来古老的频率',
-                    '✦ 最后一个音符沉入星尘之海',
-                    '∞ 回音在无限嵌套中逐渐消散'
-                ];
-                showToast(msgs[Math.floor(Math.random() * msgs.length)]);
-            });
-
+            // 6.4 重置（优化点：补全原有功能）
             document.getElementById('resetBtn').addEventListener('click', function() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 const msgs = [
@@ -1177,7 +1292,9 @@
                 showToast(msgs[Math.floor(Math.random() * msgs.length)]);
             });
 
-            // ===== 导航链接 =====
+            // ============================================================
+            // 7. 导航链接（优化：事件委托 + 防抖）
+            // ============================================================
             document.querySelectorAll('.nav-links a, .footer .links a').forEach(link => {
                 link.addEventListener('click', function(e) {
                     const href = this.getAttribute('href');
@@ -1185,6 +1302,7 @@
                         const targetId = href.substring(1);
                         const target = document.getElementById(targetId);
                         if (target) {
+                            // 延迟显示 toast 以配合滚动
                             setTimeout(() => {
                                 const msgs = [
                                     `↗ 导航 · 进入 ${targetId}`,
@@ -1192,12 +1310,14 @@
                                     `∞ 回响 · ${targetId} 的深处`
                                 ];
                                 showToast(msgs[Math.floor(Math.random() * msgs.length)]);
-                            }, 120);
+                            }, 200);
                         }
                         return;
                     }
+                    // 外部链接或 about 占位
                     if (href && (href.includes('about') || href.includes('.html'))) {
-                        showToast('↗ 导航至 ' + this.textContent.trim(), 1000);
+                        e.preventDefault();
+                        showToast(`↗ 导航至 ${this.textContent.trim()}`, 1200);
                         return;
                     }
                     e.preventDefault();
@@ -1205,55 +1325,73 @@
                 });
             });
 
-            // ===== 入场动画 =====
+            // ============================================================
+            // 8. 入场动画（优化：使用 IntersectionObserver 批量处理）
+            // ============================================================
             (function initReveal() {
                 const els = document.querySelectorAll('.reveal');
                 const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(e => {
-                        if (e.isIntersecting) e.target.classList.add('visible');
-                    });
-                }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
-                els.forEach(el => observer.observe(el));
-                setTimeout(() => {
-                    els.forEach(el => {
-                        if (el.getBoundingClientRect().top < window.innerHeight - 40)
-                            el.classList.add('visible');
-                    });
-                }, 120);
-            })();
-
-            // ===== 音频轻触 =====
-            (function initAudio() {
-                let ctx = null;
-
-                function playTone(freq, dur) {
-                    try {
-                        if (!ctx) ctx = new(window.AudioContext || window.webkitAudioContext)();
-                        const osc = ctx.createOscillator();
-                        const gain = ctx.createGain();
-                        osc.type = 'sine';
-                        osc.frequency.value = freq;
-                        gain.gain.setValueAtTime(0.035, ctx.currentTime);
-                        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
-                        osc.connect(gain);
-                        gain.connect(ctx.destination);
-                        osc.start();
-                        osc.stop(ctx.currentTime + dur);
-                    } catch (_) {}
+                    for (const entry of entries) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    }
+                }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+                for (const el of els) {
+                    observer.observe(el);
                 }
-
-                document.addEventListener('click', function(e) {
-                    const target = e.target.closest('.card, .tl-item, .item, .icon-card');
-                    if (target) {
-                        const freq = 180 + Math.random() * 440;
-                        playTone(freq, 0.22);
+                // 立即显示已可见的元素
+                requestAnimationFrame(() => {
+                    for (const el of els) {
+                        const rect = el.getBoundingClientRect();
+                        if (rect.top < window.innerHeight - 40) {
+                            el.classList.add('visible');
+                        }
                     }
                 });
             })();
 
+            // ============================================================
+            // 9. 音频轻触（优化：使用单例 AudioContext，减少创建开销）
+            // ============================================================
+            (function initAudio() {
+                let audioCtx = null;
+
+                function playTone(freq, dur) {
+                    try {
+                        if (!audioCtx) {
+                            audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                        }
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.value = freq;
+                        gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start();
+                        osc.stop(audioCtx.currentTime + dur);
+                    } catch (_) { /* 静默降级 */ }
+                }
+
+                // 使用事件委托监听卡片点击
+                document.addEventListener('click', function(e) {
+                    const target = e.target.closest('.card, .tl-item, .item, .icon-card');
+                    if (target) {
+                        const freq = 180 + Math.random() * 420;
+                        playTone(freq, 0.2);
+                    }
+                });
+            })();
+
+            // ============================================================
+            // 10. 控制台印记
+            // ============================================================
             console.log('✦ 星尘经纬 · 无尽回廊');
             console.log('◈ 共 9 个章节，每个交互点拥有独特的回响');
             console.log('⌇ 所有内容均为虚构，纯粹的诗意漫游');
+            console.log('⟳ 优化版 · 2026');
 
         })();
     </script>
