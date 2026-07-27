@@ -51,7 +51,7 @@
             border-radius: 10px;
         }
 
-        #particles {
+        #particles, #flowField {
             position: fixed;
             top: 0;
             left: 0;
@@ -62,13 +62,6 @@
         }
 
         #flowField {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
             opacity: 0.3;
         }
 
@@ -124,19 +117,6 @@
         .nav-links a:hover {
             color: #fff;
         }
-        .nav-links .current {
-            color: var(--gold);
-            position: relative;
-        }
-        .nav-links .current::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: var(--gold);
-        }
 
         .main-404 {
             position: relative;
@@ -149,8 +129,8 @@
             text-align: center;
             padding: 140px 24px 60px;
             background: radial-gradient(ellipse at 50% 30%, rgba(217, 198, 169, 0.05), transparent 60%),
-                radial-gradient(ellipse at 20% 70%, rgba(140, 212, 232, 0.03), transparent 50%),
-                var(--bg);
+                        radial-gradient(ellipse at 20% 70%, rgba(140, 212, 232, 0.03), transparent 50%),
+                        var(--bg);
         }
 
         .main-404 .code {
@@ -203,10 +183,12 @@
             backdrop-filter: blur(4px);
             cursor: pointer;
             transition: 0.3s;
+            user-select: none;
         }
-        .coordinates:hover {
+        .coordinates:hover, .coordinates:focus {
             border-color: var(--gold);
-            box-shadow: 0 0 30px rgba(217, 198, 169, 0.05);
+            box-shadow: 0 0 30px rgba(217, 198, 169, 0.1);
+            outline: none;
         }
 
         .btn-group {
@@ -310,13 +292,6 @@
             letter-spacing: 0.06em;
             margin-right: 12px;
         }
-        .scroll-log::-webkit-scrollbar {
-            width: 3px;
-        }
-        .scroll-log::-webkit-scrollbar-thumb {
-            background: var(--gold);
-            border-radius: 10px;
-        }
 
         /* ===== 谜题网格 ===== */
         .puzzle-section {
@@ -355,6 +330,7 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            user-select: none;
         }
         .puzzle-card::before {
             content: '';
@@ -367,11 +343,12 @@
             opacity: 0;
             transition: opacity 0.5s;
         }
-        .puzzle-card:hover {
+        .puzzle-card:hover, .puzzle-card:focus {
             transform: translateY(-6px);
-            border-color: rgba(217, 198, 169, 0.12);
+            border-color: rgba(217, 198, 169, 0.3);
+            outline: none;
         }
-        .puzzle-card:hover::before {
+        .puzzle-card:hover::before, .puzzle-card:focus::before {
             opacity: 1;
         }
         .puzzle-card .emoji {
@@ -442,7 +419,7 @@
             pointer-events: none;
         }
         .toast {
-            background: rgba(11, 13, 21, 0.7);
+            background: rgba(11, 13, 21, 0.85);
             backdrop-filter: blur(20px);
             border: 1px solid var(--border);
             border-radius: 60px;
@@ -518,7 +495,7 @@
         <p class="desc reveal reveal-delay-1">
             你已踏入 <mark>未标注的回廊</mark>，这里没有地图，只有星尘的低语。
         </p>
-        <div class="coordinates reveal reveal-delay-2" id="coordDisplay">◈ 虚数坐标 · 生成中</div>
+        <div class="coordinates reveal reveal-delay-2" id="coordDisplay" tabindex="0" role="button" aria-label="刷新坐标">◈ 虚数坐标 · 生成中</div>
         <div class="btn-group reveal reveal-delay-3">
             <a href="https://GodGun-Project.github.io/index.html" class="btn btn-primary">◈ 返回主廊</a>
             <button class="btn btn-secondary" id="randomGuide">🌀 随机指引</button>
@@ -541,7 +518,7 @@
         <div class="container">
             <span class="label reveal">虚 空 迷 题</span>
             <div class="puzzle-grid" id="puzzleGrid">
-                <!-- JS 生成 -->
+                <!-- 由 JS 生成 -->
             </div>
         </div>
     </section>
@@ -560,6 +537,11 @@
     <script>
         (function() {
             'use strict';
+
+            let isPageActive = true;
+            document.addEventListener('visibilitychange', () => {
+                isPageActive = !document.hidden;
+            });
 
             // ===== Toast =====
             const toastContainer = document.getElementById('toastContainer');
@@ -582,7 +564,7 @@
                 const c = document.getElementById('particles');
                 const ctx = c.getContext('2d');
                 let w, h, particles = [];
-                const COUNT = 150;
+                const COUNT = 120;
 
                 function resize() {
                     w = window.innerWidth;
@@ -606,38 +588,37 @@
                 }
 
                 function draw() {
-                    ctx.clearRect(0, 0, w, h);
-                    for (let i = 0; i < particles.length; i++) {
-                        for (let j = i + 1; j < particles.length; j++) {
-                            const dx = particles[i].x - particles[j].x;
-                            const dy = particles[i].y - particles[j].y;
-                            const dist = Math.sqrt(dx * dx + dy * dy);
-                            if (dist < 140) {
-                                ctx.beginPath();
-                                ctx.moveTo(particles[i].x, particles[i].y);
-                                ctx.lineTo(particles[j].x, particles[j].y);
-                                ctx.strokeStyle = `rgba(217,198,169,${0.04 * (1 - dist / 140)})`;
-                                ctx.lineWidth = 0.5;
-                                ctx.stroke();
+                    if (isPageActive) {
+                        ctx.clearRect(0, 0, w, h);
+                        for (let i = 0; i < particles.length; i++) {
+                            for (let j = i + 1; j < particles.length; j++) {
+                                const dx = particles[i].x - particles[j].x;
+                                const dy = particles[i].y - particles[j].y;
+                                const dist = Math.sqrt(dx * dx + dy * dy);
+                                if (dist < 140) {
+                                    ctx.beginPath();
+                                    ctx.moveTo(particles[i].x, particles[i].y);
+                                    ctx.lineTo(particles[j].x, particles[j].y);
+                                    ctx.strokeStyle = `rgba(217,198,169,${0.04 * (1 - dist / 140)})`;
+                                    ctx.lineWidth = 0.5;
+                                    ctx.stroke();
+                                }
                             }
                         }
-                    }
-                    for (const p of particles) {
-                        ctx.beginPath();
-                        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 2);
-                        grad.addColorStop(0, `rgba(217,198,169,${p.a * 0.6})`);
-                        grad.addColorStop(1, 'rgba(217,198,169,0)');
-                        ctx.fillStyle = grad;
-                        ctx.fill();
-                        ctx.beginPath();
-                        ctx.arc(p.x, p.y, p.r * 0.3, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(255,255,255,${p.a * 0.2})`;
-                        ctx.fill();
-                        p.x += p.dx;
-                        p.y += p.dy;
-                        if (p.x < 0 || p.x > w) p.dx *= -1;
-                        if (p.y < 0 || p.y > h) p.dy *= -1;
+                        for (const p of particles) {
+                            ctx.beginPath();
+                            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                            const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 2);
+                            grad.addColorStop(0, `rgba(217,198,169,${p.a * 0.6})`);
+                            grad.addColorStop(1, 'rgba(217,198,169,0)');
+                            ctx.fillStyle = grad;
+                            ctx.fill();
+
+                            p.x += p.dx;
+                            p.y += p.dy;
+                            if (p.x < 0 || p.x > w) p.dx *= -1;
+                            if (p.y < 0 || p.y > h) p.dy *= -1;
+                        }
                     }
                     requestAnimationFrame(draw);
                 }
@@ -648,12 +629,11 @@
                 window.addEventListener('resize', () => { resize(); create(); });
             })();
 
-            // ===== 流动场（额外装饰） =====
+            // ===== 流动场 =====
             (function initFlowField() {
                 const c = document.getElementById('flowField');
                 const ctx = c.getContext('2d');
-                let w, h;
-                const dots = [];
+                let w, h, dots = [];
 
                 function resize() {
                     w = window.innerWidth;
@@ -663,8 +643,8 @@
                 }
 
                 function createDots() {
-                    dots.length = 0;
-                    for (let i = 0; i < 80; i++) {
+                    dots = [];
+                    for (let i = 0; i < 60; i++) {
                         dots.push({
                             x: Math.random() * w,
                             y: Math.random() * h,
@@ -677,31 +657,17 @@
                 }
 
                 function draw() {
-                    ctx.clearRect(0, 0, w, h);
-                    for (const d of dots) {
-                        d.x += d.speedX;
-                        d.y += d.speedY;
-                        if (d.x < 0 || d.x > w) d.speedX *= -1;
-                        if (d.y < 0 || d.y > h) d.speedY *= -1;
-                        ctx.beginPath();
-                        ctx.arc(d.x, d.y, d.size, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(140,212,232,${d.opacity})`;
-                        ctx.fill();
-                    }
-                    // 绘制一些光晕线条
-                    for (let i = 0; i < dots.length; i++) {
-                        for (let j = i + 1; j < dots.length; j++) {
-                            const dx = dots[i].x - dots[j].x;
-                            const dy = dots[i].y - dots[j].y;
-                            const dist = Math.sqrt(dx * dx + dy * dy);
-                            if (dist < 180) {
-                                ctx.beginPath();
-                                ctx.moveTo(dots[i].x, dots[i].y);
-                                ctx.lineTo(dots[j].x, dots[j].y);
-                                ctx.strokeStyle = `rgba(140,212,232,${0.02 * (1 - dist / 180)})`;
-                                ctx.lineWidth = 0.5;
-                                ctx.stroke();
-                            }
+                    if (isPageActive) {
+                        ctx.clearRect(0, 0, w, h);
+                        for (const d of dots) {
+                            d.x += d.speedX;
+                            d.y += d.speedY;
+                            if (d.x < 0 || d.x > w) d.speedX *= -1;
+                            if (d.y < 0 || d.y > h) d.speedY *= -1;
+                            ctx.beginPath();
+                            ctx.arc(d.x, d.y, d.size, 0, Math.PI * 2);
+                            ctx.fillStyle = `rgba(140,212,232,${d.opacity})`;
+                            ctx.fill();
                         }
                     }
                     requestAnimationFrame(draw);
@@ -732,9 +698,17 @@
             updateCoord();
             setInterval(updateCoord, 8000);
 
-            coordEl.addEventListener('click', function() {
+            function triggerCoordRefresh() {
                 updateCoord();
                 showToast('⟡ 坐标已刷新');
+            }
+
+            coordEl.addEventListener('click', triggerCoordRefresh);
+            coordEl.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    triggerCoordRefresh();
+                }
             });
 
             // ===== 迷失之卷 =====
@@ -776,18 +750,30 @@
             puzzleData.forEach((item, idx) => {
                 const div = document.createElement('div');
                 div.className = `puzzle-card reveal reveal-delay-${(idx % 4) + 1}`;
+                div.setAttribute('tabindex', '0');
+                div.setAttribute('role', 'button');
+                div.setAttribute('aria-label', `解开谜题：${item.tag}`);
                 div.innerHTML = `
                     <span class="emoji">${item.emoji}</span>
                     <div class="hint">${item.text}</div>
                     <span class="tag">${item.tag}</span>
                 `;
-                div.addEventListener('click', function() {
+                
+                const handleInteraction = () => {
                     const msgs = [
                         `✦ 触摸 · ${item.tag}`,
                         `◈ 解读 · ${item.tag}`,
                         `⌇ 共鸣 · ${item.tag}`
                     ];
                     showToast(msgs[Math.floor(Math.random() * msgs.length)]);
+                };
+
+                div.addEventListener('click', handleInteraction);
+                div.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleInteraction();
+                    }
                 });
                 puzzleGrid.appendChild(div);
             });
@@ -807,10 +793,14 @@
                 showToast(msg);
             });
 
+            // ===== Web Audio 模拟低频共鸣 =====
             let audioCtx = null;
             document.getElementById('echoBtn').addEventListener('click', function() {
                 try {
                     if (!audioCtx) audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                    if (audioCtx.state === 'suspended') {
+                        audioCtx.resume();
+                    }
                     const osc = audioCtx.createOscillator();
                     const gain = audioCtx.createGain();
                     osc.type = 'sine';
@@ -827,7 +817,7 @@
                 }
             });
 
-            // ===== 导航链接 =====
+            // ===== 导航链接小提示 =====
             document.querySelectorAll('.nav-links a, .footer .links a').forEach(link => {
                 link.addEventListener('click', function(e) {
                     const href = this.getAttribute('href');
@@ -840,7 +830,7 @@
                 });
             });
 
-            // ===== 入场动画 =====
+            // ===== 入场滚动显示动画 =====
             (function initReveal() {
                 const els = document.querySelectorAll('.reveal');
                 const observer = new IntersectionObserver((entries) => {
@@ -848,6 +838,7 @@
                         if (e.isIntersecting) e.target.classList.add('visible');
                     });
                 }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+                
                 els.forEach(el => observer.observe(el));
                 setTimeout(() => {
                     els.forEach(el => {
@@ -858,9 +849,8 @@
             })();
 
             console.log('✦ 404 · 虚空裂隙 已升级');
-            console.log('◈ 新增：流动场、坐标刷新、迷失之卷、更多谜题、虚空回声');
+            console.log('◈ 已优化：流动场、后台渲染暂停、AudioContext 策略与无障碍支持');
         })();
     </script>
-
 </body>
 </html>
